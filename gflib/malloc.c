@@ -7,7 +7,7 @@
 static void *sHeapStart;
 static u32 sHeapSize;
 
-EWRAM_DATA u8 gHeap[HEAP_SIZE] = {0};
+ALIGNED(4) EWRAM_DATA u8 gHeap[HEAP_SIZE] = {0};
 
 void PutMemBlockHeader(void *block, struct MemBlock *prev, struct MemBlock *next, u32 size)
 {
@@ -53,7 +53,8 @@ void *AllocInternal(void *heapStart, u32 size, const char *location)
                     // The block isn't much bigger than the requested size,
                     // so just use it.
                     pos->allocated = TRUE;
-                } else 
+                }
+                else
                 {
                     // The block is significantly bigger than the requested
                     // size, so split the rest into a separate block.
@@ -117,9 +118,9 @@ void FreeInternal(void *heapStart, void *pointer)
 
         // If the freed block isn't the last one, merge with the next block
         // if it's not in use.
-        if (block->next != head) 
+        if (block->next != head)
         {
-            if (!block->next->allocated) 
+            if (!block->next->allocated)
             {
                 block->size += sizeof(struct MemBlock) + block->next->size;
                 block->next->magic = 0;
@@ -131,9 +132,9 @@ void FreeInternal(void *heapStart, void *pointer)
 
         // If the freed block isn't the first one, merge with the previous block
         // if it's not in use.
-        if (block != head) 
+        if (block != head)
         {
-            if (!block->prev->allocated) 
+            if (!block->prev->allocated)
             {
                 block->prev->next = block->next;
 
