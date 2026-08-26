@@ -1,5 +1,38 @@
 static const struct SpriteFrameImage sPicTable_BrendanNormal[] = {
-    overworld_ascending_frames(gObjectEventPic_BrendanNormalRunning, 2, 4),
+    // walking straight
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 0),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 1),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 2),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 3),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 4),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 5),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 6),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 7),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 8),
+    // running straight
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 0),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 1),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 2),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 3),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 4),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 5),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 6),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 7),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 8),
+    // walking diagonal
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 9),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 10),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 11),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 12),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 13),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 14),
+    // running diagonal
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 9),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 10),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 11),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 12),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 13),
+    overworld_frame(gObjectEventPic_BrendanNormalRunning, 2, 4, 14),
 };
 
 
@@ -430,7 +463,40 @@ static const struct SpriteFrameImage sPicTable_Artist[] = {
 };
 
 static const struct SpriteFrameImage sPicTable_MayNormal[] = {
-    overworld_ascending_frames(gObjectEventPic_MayNormalRunning, 2, 4),
+    // walking straight
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 0),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 1),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 2),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 3),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 4),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 5),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 6),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 7),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 8),
+    // running straight
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 0),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 1),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 2),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 3),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 4),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 5),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 6),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 7),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 8),
+    // walking diagonal
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 9),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 10),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 11),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 12),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 13),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 14),
+    // running diagonal
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 9),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 10),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 11),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 12),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 13),
+    overworld_frame(gObjectEventPic_MayNormalRunning, 2, 4, 14),
 };
 
 static const struct SpriteFrameImage sPicTable_MayMachBike[] = {
