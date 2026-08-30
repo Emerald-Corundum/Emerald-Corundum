@@ -2191,6 +2191,7 @@ void UpdateFollowingPokemon(void)
     u16 species;
     bool8 shiny;
     u8 form;
+
     // Don't spawn follower if:
     // 1. GetFollowerInfo returns FALSE
     // 2. Map is indoors and gfx is larger than 32x32
@@ -9313,6 +9314,36 @@ static u8 GetReflectionTypeByMetatileBehavior(u32 behavior)
         return REFL_TYPE_WATER;
     else
         return REFL_TYPE_NONE;
+}
+
+u8 GetLedgeJumpDirection(s16 x, s16 y, u8 direction)
+{
+    static bool8 (*const ledgeBehaviorFuncs[])(u8) = {
+        [DIR_SOUTH - 1] = MetatileBehavior_IsJumpSouth,
+        [DIR_NORTH - 1] = MetatileBehavior_IsJumpNorth,
+        [DIR_WEST - 1]  = MetatileBehavior_IsJumpWest,
+        [DIR_EAST - 1]  = MetatileBehavior_IsJumpEast,
+        [DIR_SOUTHWEST - 1] = MetatileBehavior_IsJumpSouthwest,
+        [DIR_SOUTHEAST - 1]  = MetatileBehavior_IsJumpSoutheast,
+        [DIR_NORTHWEST - 1] = MetatileBehavior_IsJumpNorthwest,
+        [DIR_NORTHEAST - 1]  = MetatileBehavior_IsJumpNortheast,
+    };
+
+    u8 behavior;
+    u8 index = direction;
+
+    if (index == DIR_NONE)
+        return DIR_NONE;
+    else if (index > DIR_NORTHEAST)
+        index -= DIR_NORTHEAST;
+
+    index--;
+    behavior = MapGridGetMetatileBehaviorAt(x, y);
+
+    if (ledgeBehaviorFuncs[index](behavior) == TRUE)
+        return index + 1;
+
+    return DIR_NONE;
 }
 
 static void SetObjectEventSpriteOamTableForLongGrass(struct ObjectEvent *objEvent, struct Sprite *sprite)
