@@ -199,4 +199,6 @@
 	create_movement_action player_run_northwest, MOVEMENT_ACTION_PLAYER_RUN_NORTHWEST
 	create_movement_action player_run_northeast, MOVEMENT_ACTION_PLAYER_RUN_NORTHEAST
 
+	create_movement_action exit_pokeball, MOVEMENT_ACTION_EXIT_POKEBALL
+	create_movement_action enter_pokeball, MOVEMENT_ACTION_ENTER_POKEBALL
 	create_movement_action step_end, MOVEMENT_ACTION_STEP_END
