@@ -339,8 +339,14 @@
 #define MOVEMENT_ACTION_ACRO_END_WHEELIE_MOVE_SOUTHEAST 0xFB
 #define MOVEMENT_ACTION_ACRO_END_WHEELIE_MOVE_NORTHWEST 0xFC
 #define MOVEMENT_ACTION_ACRO_END_WHEELIE_MOVE_NORTHEAST 0xFD
-#define MOVEMENT_ACTION_EXIT_POKEBALL                   0xA0
-#define MOVEMENT_ACTION_ENTER_POKEBALL                  0xA1
+// first action ids without following pokemon
+// should break diagonal movement but for now no diagonal water current tiles exist
+// untested, but most likely will brick the game
+// possible solutions:
+// 1. swap to diagonal moving when actually moving diagonally, otherwise use pokeball exiting
+// 2. swap functions of `MOVEMENT_ACTION_RIDE_WATER_CURRENT_<DIR>` with functions of `MOVEMENT_ACTION_[ENTER|EXIT]_POKEBALL` when not surfing
+#define MOVEMENT_ACTION_EXIT_POKEBALL                   MOVEMENT_ACTION_RIDE_WATER_CURRENT_SOUTHWEST
+#define MOVEMENT_ACTION_ENTER_POKEBALL                  MOVEMENT_ACTION_RIDE_WATER_CURRENT_SOUTHEAST
 
 #define MOVEMENT_ACTION_STEP_END 0xFE
 #define MOVEMENT_ACTION_NONE     0xFF

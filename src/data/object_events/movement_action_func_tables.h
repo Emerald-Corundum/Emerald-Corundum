@@ -875,8 +875,8 @@ u8 (*const *const gMovementActionFuncs[])(struct ObjectEvent *, struct Sprite *)
     [MOVEMENT_ACTION_PLAYER_RUN_SOUTHEAST] = gMovementActionFuncs_PlayerRunSoutheast,
     [MOVEMENT_ACTION_PLAYER_RUN_NORTHWEST] = gMovementActionFuncs_PlayerRunNorthwest,
     [MOVEMENT_ACTION_PLAYER_RUN_NORTHEAST] = gMovementActionFuncs_PlayerRunNortheast,
-    [MOVEMENT_ACTION_RIDE_WATER_CURRENT_SOUTHWEST] = gMovementActionFuncs_RideWaterCurrentSouthwest,
-    [MOVEMENT_ACTION_RIDE_WATER_CURRENT_SOUTHEAST] = gMovementActionFuncs_RideWaterCurrentSoutheast,
+    // [MOVEMENT_ACTION_RIDE_WATER_CURRENT_SOUTHWEST] = gMovementActionFuncs_RideWaterCurrentSouthwest,
+    // [MOVEMENT_ACTION_RIDE_WATER_CURRENT_SOUTHEAST] = gMovementActionFuncs_RideWaterCurrentSoutheast,
     [MOVEMENT_ACTION_RIDE_WATER_CURRENT_NORTHWEST] = gMovementActionFuncs_RideWaterCurrentNorthwest,
     [MOVEMENT_ACTION_RIDE_WATER_CURRENT_NORTHEAST] = gMovementActionFuncs_RideWaterCurrentNortheast,
     [MOVEMENT_ACTION_JUMP_SOUTHWEST] = gMovementActionFuncs_JumpSouthwest,
@@ -935,8 +935,8 @@ u8 (*const *const gMovementActionFuncs[])(struct ObjectEvent *, struct Sprite *)
     [MOVEMENT_ACTION_ACRO_END_WHEELIE_MOVE_SOUTHEAST] = gMovementActionFuncs_AcroEndWheelieMoveSoutheast,
     [MOVEMENT_ACTION_ACRO_END_WHEELIE_MOVE_NORTHWEST] = gMovementActionFuncs_AcroEndWheelieMoveNorthwest,
     [MOVEMENT_ACTION_ACRO_END_WHEELIE_MOVE_NORTHEAST] = gMovementActionFuncs_AcroEndWheelieMoveNortheast,
-    // [MOVEMENT_ACTION_EXIT_POKEBALL] = gMovementActionFuncs_ExitPokeball,
-    // [MOVEMENT_ACTION_ENTER_POKEBALL] = gMovementActionFuncs_EnterPokeball,
+    [MOVEMENT_ACTION_EXIT_POKEBALL] = gMovementActionFuncs_ExitPokeball,
+    [MOVEMENT_ACTION_ENTER_POKEBALL] = gMovementActionFuncs_EnterPokeball,
 };
 
 u8 (*const gMovementActionFuncs_FaceDown[])(struct ObjectEvent *, struct Sprite *) = {
