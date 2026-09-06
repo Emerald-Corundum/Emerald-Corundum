@@ -5543,6 +5543,8 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
 
     // Follow player
     direction = GetDirectionToFace(x, y, targetX, targetY);
+    if (!IsDirectionDiagonal(direction))
+        objectEvent->lastCardinalDirection = direction;
     MoveCoords(direction, &x, &y);
     #ifdef MB_SIDEWAYS_STAIRS_RIGHT_SIDE // https://github.com/ghoulslash/pokeemerald/tree/sideways_stairs
     GetCollisionAtCoords(objectEvent, x, y, direction); // Sets directionOverwrite for stairs
@@ -5949,7 +5951,7 @@ void SetStepAnimHandleAlternation(struct ObjectEvent *objectEvent, struct Sprite
         if (stepTable != NULL)
         {
             if (sprite->animCmdIndex == stepTable->animPos[0])
-                sprite->animCmdIndex  = stepTable->animPos[3];
+                sprite->animCmdIndex = stepTable->animPos[3];
             else if (sprite->animCmdIndex == stepTable->animPos[1])
                 sprite->animCmdIndex = stepTable->animPos[2];
         }

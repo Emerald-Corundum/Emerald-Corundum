@@ -3,6 +3,9 @@
 #include "main.h"
 #include "palette.h"
 
+#include "constants/event_objects.h"
+#include "constants/event_object_movement.h"
+
 #define MAX_SPRITE_COPY_REQUESTS 64
 
 #define OAM_MATRIX_COUNT 32
@@ -865,28 +868,7 @@ void BeginAnim(struct Sprite *sprite)
     if (imageValue != -1)
     {
         sprite->animBeginning = FALSE;
-        duration = sprite->anims[sprite->animNum][sprite->animCmdIndex].frame.duration;
-        hFlip = sprite->anims[sprite->animNum][sprite->animCmdIndex].frame.hFlip;
-        vFlip = sprite->anims[sprite->animNum][sprite->animCmdIndex].frame.vFlip;
-
-        if (duration)
-            duration--;
-
-        sprite->animDelayCounter = duration;
-
-        if (!(sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK))
-            SetSpriteOamFlipBits(sprite, hFlip, vFlip);
-
-        if (sprite->usingSheet)
-        {
-            if (OW_GFX_COMPRESS && sprite->sheetSpan)
-                imageValue = (imageValue + 1) << sprite->sheetSpan;
-            sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
-        }
-        else
-        {
-            RequestSpriteFrameImageCopy(imageValue, sprite->oam.tileNum, sprite->images);
-        }
+        AnimCmd_frame(sprite);
     }
 }
 
@@ -907,6 +889,16 @@ void ContinueAnim(struct Sprite *sprite)
         s16 type;
         s16 funcIndex;
         sprite->animCmdIndex++;
+        
+        if (
+            gObjectEvents[sprite->data[0]].localId == OBJ_EVENT_ID_FOLLOWER &&
+            sprite->animNum >= ANIM_STD_FACE_SOUTHWEST &&
+            sprite->animNum <= ANIM_STD_GO_FAST_NORTHEAST)
+        {
+            sprite->animNum -= sprite->animNum % 4;
+            if (gObjectEvents[sprite->data[0]].lastCardinalDirection)
+                sprite->animNum += gObjectEvents[sprite->data[0]].lastCardinalDirection - 1;
+        }
         type = sprite->anims[sprite->animNum][sprite->animCmdIndex].type;
         funcIndex = 3;
         if (type < 0)
@@ -955,36 +947,8 @@ void AnimCmd_end(struct Sprite *sprite)
 
 void AnimCmd_jump(struct Sprite *sprite)
 {
-    s16 imageValue;
-    u8 duration;
-    u8 hFlip;
-    u8 vFlip;
-
     sprite->animCmdIndex = sprite->anims[sprite->animNum][sprite->animCmdIndex].jump.target;
-
-    imageValue = sprite->anims[sprite->animNum][sprite->animCmdIndex].frame.imageValue;
-    duration = sprite->anims[sprite->animNum][sprite->animCmdIndex].frame.duration;
-    hFlip = sprite->anims[sprite->animNum][sprite->animCmdIndex].frame.hFlip;
-    vFlip = sprite->anims[sprite->animNum][sprite->animCmdIndex].frame.vFlip;
-
-    if (duration)
-        duration--;
-
-    sprite->animDelayCounter = duration;
-
-    if (!(sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK))
-        SetSpriteOamFlipBits(sprite, hFlip, vFlip);
-
-    if (sprite->usingSheet)
-    {
-        if (OW_GFX_COMPRESS && sprite->sheetSpan)
-            imageValue = (imageValue + 1) << sprite->sheetSpan;
-        sprite->oam.tileNum = sprite->sheetTileStart + imageValue;
-    }
-    else
-    {
-        RequestSpriteFrameImageCopy(imageValue, sprite->oam.tileNum, sprite->images);
-    }
+    AnimCmd_frame(sprite);
 }
 
 void AnimCmd_loop(struct Sprite *sprite)
