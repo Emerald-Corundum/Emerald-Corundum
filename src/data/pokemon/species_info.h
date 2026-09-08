@@ -110,7 +110,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             .tracks = TRACKS_FOOT,
             .oam = &gObjectEventBaseOam_32x32,
             .subspriteTables = sOamTables_32x32,
-            .anims = sAnimTable_Following,
+            .anims = sAnimTable_Following_Diagonal,
             .images = sPicTable_Substitute,
             .affineAnims = gDummySpriteAffineAnimTable,
         },

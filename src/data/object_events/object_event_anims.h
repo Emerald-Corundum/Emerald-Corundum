@@ -1392,6 +1392,102 @@ static const union AnimCmd sAnim_Diagonal_GoFastNortheast[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd sAnim_Diagonal_FaceSouthwest2F[] =
+{
+    ANIMCMD_FRAME(6, 16),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_FaceSoutheast2F[] =
+{
+    ANIMCMD_FRAME(6, 16, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_FaceNorthwest2F[] =
+{
+    ANIMCMD_FRAME(8, 16),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_FaceNortheast2F[] =
+{
+    ANIMCMD_FRAME(8, 16, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_GoSouthwest2F[] =
+{
+    ANIMCMD_FRAME(6, 8),
+    ANIMCMD_FRAME(7, 8),
+    ANIMCMD_FRAME(7, 8),
+    ANIMCMD_FRAME(6, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_GoSoutheast2F[] =
+{
+    ANIMCMD_FRAME(6, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(6, 8, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_GoNorthwest2F[] =
+{
+    ANIMCMD_FRAME(8, 8),
+    ANIMCMD_FRAME(9, 8),
+    ANIMCMD_FRAME(9, 8),
+    ANIMCMD_FRAME(8, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_GoNortheast2F[] =
+{
+    ANIMCMD_FRAME(8, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(8, 8, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_GoFastSouthwest2F[] =
+{
+    ANIMCMD_FRAME(6, 4),
+    ANIMCMD_FRAME(7, 4),
+    ANIMCMD_FRAME(7, 4),
+    ANIMCMD_FRAME(6, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_GoFastSoutheast2F[] =
+{
+    ANIMCMD_FRAME(6, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(6, 4, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_GoFastNorthwest2F[] =
+{
+    ANIMCMD_FRAME(8, 4),
+    ANIMCMD_FRAME(9, 4),
+    ANIMCMD_FRAME(9, 4),
+    ANIMCMD_FRAME(8, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Diagonal_GoFastNortheast2F[] =
+{
+    ANIMCMD_FRAME(8, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(8, 4, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
 static const union AnimCmd sAnim_Diagonal_GoFasterSouthwest[] =
 {
     ANIMCMD_FRAME(11, 2),
@@ -1533,6 +1629,46 @@ const union AnimCmd *const sAnimTable_Following[] = {
     [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastNorth2F,
     [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastWest2F,
     [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastEast2F,
+    // 'Faster' and above used for entering/exiting pokeball
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_EnterSouth,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_EnterNorth,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_EnterWest,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_EnterEast,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_ExitPokeballSouth,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_ExitPokeballNorth,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_ExitPokeballWest,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_ExitPokeballEast,
+    [ANIM_EXIT_POKEBALL_FAST_SOUTH] = sAnim_ExitPokeballFastSouth,
+    [ANIM_EXIT_POKEBALL_FAST_NORTH] = sAnim_ExitPokeballFastNorth,
+    [ANIM_EXIT_POKEBALL_FAST_WEST] = sAnim_ExitPokeballFastWest,
+    [ANIM_EXIT_POKEBALL_FAST_EAST] = sAnim_ExitPokeballFastEast,
+};
+
+const union AnimCmd *const sAnimTable_Following_Diagonal[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth2F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest2F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast2F,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth2F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth2F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest2F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast2F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth2F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth2F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest2F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast2F,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_Diagonal_FaceSouthwest2F,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_Diagonal_FaceSoutheast2F,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_Diagonal_FaceNorthwest2F,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_Diagonal_FaceNortheast2F,
+    [ANIM_STD_GO_SOUTHWEST] = sAnim_Diagonal_GoSouthwest2F,
+    [ANIM_STD_GO_SOUTHEAST] = sAnim_Diagonal_GoSoutheast2F,
+    [ANIM_STD_GO_NORTHWEST] = sAnim_Diagonal_GoNorthwest2F,
+    [ANIM_STD_GO_NORTHEAST] = sAnim_Diagonal_GoNortheast2F,
+    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_Diagonal_GoFastSouthwest2F,
+    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_Diagonal_GoFastSoutheast2F,
+    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_Diagonal_GoFastNorthwest2F,
+    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_Diagonal_GoFastNortheast2F,
     // 'Faster' and above used for entering/exiting pokeball
     [ANIM_STD_GO_FASTER_SOUTH] = sAnim_EnterSouth,
     [ANIM_STD_GO_FASTER_NORTH] = sAnim_EnterNorth,
@@ -2548,6 +2684,10 @@ static const struct StepAnimTable sStepAnimTables[] = {
     },
     {
         .anims = sAnimTable_Following,
+        .animPos = {1, 3, 0, 2},
+    },
+    {
+        .anims = sAnimTable_Following_Diagonal,
         .animPos = {1, 3, 0, 2},
     },
     {

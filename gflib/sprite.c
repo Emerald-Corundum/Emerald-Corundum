@@ -3,7 +3,6 @@
 #include "main.h"
 #include "palette.h"
 
-#include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
 
 #define MAX_SPRITE_COPY_REQUESTS 64
@@ -856,9 +855,6 @@ void AnimateSprite(struct Sprite *sprite)
 void BeginAnim(struct Sprite *sprite)
 {
     s16 imageValue;
-    u8 duration;
-    u8 hFlip;
-    u8 vFlip;
 
     sprite->animCmdIndex = 0;
     sprite->animEnded = FALSE;
@@ -874,6 +870,8 @@ void BeginAnim(struct Sprite *sprite)
 
 void ContinueAnim(struct Sprite *sprite)
 {
+    extern const union AnimCmd *const sAnimTable_Following[];
+
     if (sprite->animDelayCounter)
     {
         u8 hFlip;
@@ -891,7 +889,7 @@ void ContinueAnim(struct Sprite *sprite)
         sprite->animCmdIndex++;
         
         if (
-            gObjectEvents[sprite->data[0]].localId == OBJ_EVENT_ID_FOLLOWER &&
+            sprite->anims == sAnimTable_Following &&
             sprite->animNum >= ANIM_STD_FACE_SOUTHWEST &&
             sprite->animNum <= ANIM_STD_GO_FAST_NORTHEAST)
         {

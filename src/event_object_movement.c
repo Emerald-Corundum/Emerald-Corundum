@@ -1995,6 +1995,9 @@ struct ObjectEvent *GetFollowerObject(void)
 // Return graphicsInfo for a pokemon species & form
 static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, u8 form)
 {
+    if (species == OW_CHANGE_TO_SUBSTITUTE)
+        species = SPECIES_NONE;
+
     const struct ObjectEventGraphicsInfo *graphicsInfo = NULL;
 #if OW_POKEMON_OBJECT_EVENTS
     switch (species)
