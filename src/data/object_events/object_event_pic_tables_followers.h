@@ -1847,9 +1847,15 @@ static const struct SpriteFrameImage sPicTable_Celebi[] = {
 #endif //P_FAMILY_CELEBI
 
 #if P_FAMILY_TREECKO
+#if OW_TREECKO_DIAGONAL_MOVEMENT == TRUE
+static const struct SpriteFrameImage sPicTable_Treecko_Diagonal[] = {
+    overworld_ascending_frames(gObjectEventPic_Treecko_Diagonal, 4, 4),
+};
+#else
 static const struct SpriteFrameImage sPicTable_Treecko[] = {
     overworld_ascending_frames(gObjectEventPic_Treecko, 4, 4),
 };
+#endif
 static const struct SpriteFrameImage sPicTable_Grovyle[] = {
     overworld_ascending_frames(gObjectEventPic_Grovyle, 4, 4),
 };

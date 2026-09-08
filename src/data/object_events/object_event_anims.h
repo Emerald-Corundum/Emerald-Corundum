@@ -1560,7 +1560,7 @@ static const union AnimCmd sAnim_Diagonal_GoFastestNortheast[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd *const sAnimTable_Standard_Diagonal[] = {
+const union AnimCmd *const sAnimTable_Standard_Diagonal[] = {
     [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
     [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
     [ANIM_STD_FACE_WEST] = sAnim_FaceWest,

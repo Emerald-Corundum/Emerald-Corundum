@@ -6516,11 +6516,19 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u8 gMonFootprint_Treecko[] = INCBIN_U8("graphics/pokemon/treecko/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #if OW_POKEMON_OBJECT_EVENTS
+#if OW_TREECKO_DIAGONAL_MOVEMENT == TRUE
+    const u32 gObjectEventPic_Treecko_Diagonal[] = INCBIN_COMP("graphics/pokemon/treecko/overworld_diagonal.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u32 gOverworldPalette_Treecko_Diagonal[] = INCBIN_U32("graphics/pokemon/treecko/overworld_diagonal_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_Treecko_Diagonal[] = INCBIN_U32("graphics/pokemon/treecko/overworld_diagonal_shiny.gbapal.lz");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#else
     const u32 gObjectEventPic_Treecko[] = INCBIN_COMP("graphics/pokemon/treecko/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     const u32 gOverworldPalette_Treecko[] = INCBIN_U32("graphics/pokemon/treecko/overworld_normal.gbapal.lz");
     const u32 gShinyOverworldPalette_Treecko[] = INCBIN_U32("graphics/pokemon/treecko/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_TREECKO_DIAGONAL_MOVEMENT
 #endif //OW_POKEMON_OBJECT_EVENTS
 
     const u32 gMonFrontPic_Grovyle[] = INCBIN_U32("graphics/pokemon/grovyle/anim_front.4bpp.lz");

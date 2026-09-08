@@ -1572,6 +1572,9 @@ $(POKEMONGFXDIR)/celebi/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/treecko/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/treecko/overworld_diagonal.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/grovyle/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
