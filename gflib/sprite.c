@@ -870,7 +870,10 @@ void BeginAnim(struct Sprite *sprite)
 
 void ContinueAnim(struct Sprite *sprite)
 {
-    extern const union AnimCmd *const sAnimTable_Following[];
+    extern const union AnimCmd *const sAnimTable_Walk3F[];
+    extern const union AnimCmd *const sAnimTable_Walk3F_Asym[];
+    extern const union AnimCmd *const sAnimTable_Walk2F[];
+    extern const union AnimCmd *const sAnimTable_Walk2F_Asym[];
 
     if (sprite->animDelayCounter)
     {
@@ -887,11 +890,13 @@ void ContinueAnim(struct Sprite *sprite)
         s16 type;
         s16 funcIndex;
         sprite->animCmdIndex++;
-        
+
         if (
-            sprite->anims == sAnimTable_Following &&
-            sprite->animNum >= ANIM_STD_FACE_SOUTHWEST &&
-            sprite->animNum <= ANIM_STD_GO_FAST_NORTHEAST)
+            (
+                sprite->anims == sAnimTable_Walk3F || sprite->anims == sAnimTable_Walk3F_Asym ||
+                sprite->anims == sAnimTable_Walk2F || sprite->anims == sAnimTable_Walk2F_Asym
+            ) &&
+            sprite->animNum >= ANIM_STD_FACE_SOUTHWEST && sprite->animNum <= ANIM_STD_GO_FAST_NORTHEAST)
         {
             sprite->animNum -= sprite->animNum % 4;
             if (gObjectEvents[sprite->data[0]].lastCardinalDirection)

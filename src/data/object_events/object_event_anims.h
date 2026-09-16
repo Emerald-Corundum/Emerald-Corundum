@@ -7,6 +7,10 @@ static const union AnimCmd sAnim_StayStill[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd *const sAnimTable_Inanimate[] = {
+    [ANIM_STAY_STILL] = sAnim_StayStill,
+};
+
 static const union AnimCmd sAnim_QuintyPlumpFaceSouth[] =
 {
     ANIMCMD_FRAME(0, 16),
@@ -175,13 +179,39 @@ static const union AnimCmd sAnim_QuintyPlumpGoFastestEast[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_FaceSouth[] =
+static const union AnimCmd *const sAnimTable_QuintyPlump[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_QuintyPlumpFaceSouth,
+    [ANIM_STD_FACE_NORTH] = sAnim_QuintyPlumpFaceNorth,
+    [ANIM_STD_FACE_WEST] = sAnim_QuintyPlumpFaceWest,
+    [ANIM_STD_FACE_EAST] = sAnim_QuintyPlumpFaceEast,
+    [ANIM_STD_GO_SOUTH] = sAnim_QuintyPlumpGoSouth,
+    [ANIM_STD_GO_NORTH] = sAnim_QuintyPlumpGoNorth,
+    [ANIM_STD_GO_WEST] = sAnim_QuintyPlumpGoWest,
+    [ANIM_STD_GO_EAST] = sAnim_QuintyPlumpGoEast,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_QuintyPlumpGoFastSouth,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_QuintyPlumpGoFastNorth,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_QuintyPlumpGoFastWest,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_QuintyPlumpGoFastEast,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_QuintyPlumpGoFasterSouth,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_QuintyPlumpGoFasterNorth,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_QuintyPlumpGoFasterWest,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_QuintyPlumpGoFasterEast,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_QuintyPlumpGoFastestSouth,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_QuintyPlumpGoFastestNorth,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_QuintyPlumpGoFastestWest,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_QuintyPlumpGoFastestEast,
+};
+
+static const union AnimCmd sAnim_FaceSouth3F[] =
 {
     ANIMCMD_FRAME(0, 16),
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_FaceNorth[] =
+// south facing is always frame 0, regardless of two or three frames
+#define sAnim_FaceSouth2F sAnim_FaceSouth3F
+
+static const union AnimCmd sAnim_FaceNorth3F[] =
 {
     ANIMCMD_FRAME(1, 16),
     ANIMCMD_JUMP(0),
@@ -193,7 +223,7 @@ static const union AnimCmd sAnim_FaceNorth2F[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_FaceWest[] =
+static const union AnimCmd sAnim_FaceWest3F[] =
 {
     ANIMCMD_FRAME(2, 16),
     ANIMCMD_JUMP(0),
@@ -205,11 +235,13 @@ static const union AnimCmd sAnim_FaceWest2F[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_FaceEast[] =
+static const union AnimCmd sAnim_FaceEast3F[] =
 {
     ANIMCMD_FRAME(2, 16, .hFlip = TRUE),
     ANIMCMD_JUMP(0),
 };
+
+#define sAnim_FaceEast3F_Asym sAnim_FaceEast3F
 
 static const union AnimCmd sAnim_FaceEast2F[] =
 {
@@ -223,7 +255,63 @@ static const union AnimCmd sAnim_FaceEast2F_Asym[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_GoSouth[] =
+static const union AnimCmd sAnim_FaceSouthwest3F[] =
+{
+    ANIMCMD_FRAME(9, 16),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_FaceSouthwest2F[] =
+{
+    ANIMCMD_FRAME(6, 16),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_FaceSoutheast3F[] =
+{
+    ANIMCMD_FRAME(9, 16, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_FaceSoutheast3F_Asym sAnim_FaceSoutheast3F
+
+static const union AnimCmd sAnim_FaceSoutheast2F[] =
+{
+    ANIMCMD_FRAME(6, 16, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_FaceSoutheast2F_Asym sAnim_FaceSoutheast2F
+
+static const union AnimCmd sAnim_FaceNorthwest3F[] =
+{
+    ANIMCMD_FRAME(10, 16),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_FaceNorthwest2F[] =
+{
+    ANIMCMD_FRAME(8, 16),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_FaceNortheast3F[] =
+{
+    ANIMCMD_FRAME(10, 16, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_FaceNortheast3F_Asym sAnim_FaceNortheast3F
+
+static const union AnimCmd sAnim_FaceNortheast2F[] =
+{
+    ANIMCMD_FRAME(8, 16, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_FaceNortheast2F_Asym sAnim_FaceNortheast2F
+
+static const union AnimCmd sAnim_GoSouth3F[] =
 {
     ANIMCMD_FRAME(3, 8),
     ANIMCMD_FRAME(0, 8),
@@ -241,7 +329,7 @@ static const union AnimCmd sAnim_GoSouth2F[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_GoNorth[] =
+static const union AnimCmd sAnim_GoNorth3F[] =
 {
     ANIMCMD_FRAME(5, 8),
     ANIMCMD_FRAME(1, 8),
@@ -259,7 +347,7 @@ static const union AnimCmd sAnim_GoNorth2F[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_GoWest[] =
+static const union AnimCmd sAnim_GoWest3F[] =
 {
     ANIMCMD_FRAME(7, 8),
     ANIMCMD_FRAME(2, 8),
@@ -277,7 +365,7 @@ static const union AnimCmd sAnim_GoWest2F[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_GoEast[] =
+static const union AnimCmd sAnim_GoEast3F[] =
 {
     ANIMCMD_FRAME(7, 8, .hFlip = TRUE),
     ANIMCMD_FRAME(2, 8, .hFlip = TRUE),
@@ -285,6 +373,8 @@ static const union AnimCmd sAnim_GoEast[] =
     ANIMCMD_FRAME(2, 8, .hFlip = TRUE),
     ANIMCMD_JUMP(0),
 };
+
+#define sAnim_GoEast3F_Asym sAnim_GoEast3F
 
 static const union AnimCmd sAnim_GoEast2F[] =
 {
@@ -304,7 +394,87 @@ static const union AnimCmd sAnim_GoEast2F_Asym[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_GoFastSouth[] =
+static const union AnimCmd sAnim_GoSouthwest3F[] =
+{
+    ANIMCMD_FRAME(11, 8),
+    ANIMCMD_FRAME( 9, 8),
+    ANIMCMD_FRAME(12, 8),
+    ANIMCMD_FRAME( 9, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoSouthwest2F[] =
+{
+    ANIMCMD_FRAME(6, 8),
+    ANIMCMD_FRAME(7, 8),
+    ANIMCMD_FRAME(7, 8),
+    ANIMCMD_FRAME(6, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoSoutheast3F[] =
+{
+    ANIMCMD_FRAME(11, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME( 9, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME( 9, 8, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoSoutheast3F_Asym sAnim_GoSoutheast3F
+
+static const union AnimCmd sAnim_GoSoutheast2F[] =
+{
+    ANIMCMD_FRAME(6, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(6, 8, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoSoutheast2F_Asym sAnim_GoSoutheast2F
+
+static const union AnimCmd sAnim_GoNorthwest3F[] =
+{
+    ANIMCMD_FRAME(13, 8),
+    ANIMCMD_FRAME(10, 8),
+    ANIMCMD_FRAME(14, 8),
+    ANIMCMD_FRAME(10, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoNorthwest2F[] =
+{
+    ANIMCMD_FRAME(8, 8),
+    ANIMCMD_FRAME(9, 8),
+    ANIMCMD_FRAME(9, 8),
+    ANIMCMD_FRAME(8, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoNortheast3F[] =
+{
+    ANIMCMD_FRAME(13, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(10, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(10, 8, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoNortheast3F_Asym sAnim_GoNortheast3F
+
+static const union AnimCmd sAnim_GoNortheast2F[] =
+{
+    ANIMCMD_FRAME(8, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(8, 8, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoNortheast2F_Asym sAnim_GoNortheast2F
+
+static const union AnimCmd sAnim_GoFastSouth3F[] =
 {
     ANIMCMD_FRAME(3, 4),
     ANIMCMD_FRAME(0, 4),
@@ -322,7 +492,7 @@ static const union AnimCmd sAnim_GoFastSouth2F[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_GoFastNorth[] =
+static const union AnimCmd sAnim_GoFastNorth3F[] =
 {
     ANIMCMD_FRAME(5, 4),
     ANIMCMD_FRAME(1, 4),
@@ -340,7 +510,7 @@ static const union AnimCmd sAnim_GoFastNorth2F[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_GoFastWest[] =
+static const union AnimCmd sAnim_GoFastWest3F[] =
 {
     ANIMCMD_FRAME(7, 4),
     ANIMCMD_FRAME(2, 4),
@@ -358,7 +528,7 @@ static const union AnimCmd sAnim_GoFastWest2F[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_GoFastEast[] =
+static const union AnimCmd sAnim_GoFastEast3F[] =
 {
     ANIMCMD_FRAME(7, 4, .hFlip = TRUE),
     ANIMCMD_FRAME(2, 4, .hFlip = TRUE),
@@ -366,6 +536,8 @@ static const union AnimCmd sAnim_GoFastEast[] =
     ANIMCMD_FRAME(2, 4, .hFlip = TRUE),
     ANIMCMD_JUMP(0),
 };
+
+#define sAnim_GoFastEast3F_Asym sAnim_GoFastEast3F
 
 static const union AnimCmd sAnim_GoFastEast2F[] =
 {
@@ -385,12 +557,813 @@ static const union AnimCmd sAnim_GoFastEast2F_Asym[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_GoFasterSouth[] =
+static const union AnimCmd sAnim_GoFastSouthwest3F[] =
+{
+    ANIMCMD_FRAME(11, 4),
+    ANIMCMD_FRAME( 9, 4),
+    ANIMCMD_FRAME(12, 4),
+    ANIMCMD_FRAME( 9, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastSouthwest2F[] =
+{
+    ANIMCMD_FRAME(6, 4),
+    ANIMCMD_FRAME(7, 4),
+    ANIMCMD_FRAME(7, 4),
+    ANIMCMD_FRAME(6, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastSoutheast3F[] =
+{
+    ANIMCMD_FRAME(11, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME( 9, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME( 9, 4, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFastSoutheast3F_Asym sAnim_GoFastSoutheast3F
+
+static const union AnimCmd sAnim_GoFastSoutheast2F[] =
+{
+    ANIMCMD_FRAME(6, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(6, 4, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFastSoutheast2F_Asym sAnim_GoFastSoutheast2F
+
+static const union AnimCmd sAnim_GoFastNorthwest3F[] =
+{
+    ANIMCMD_FRAME(13, 4),
+    ANIMCMD_FRAME(10, 4),
+    ANIMCMD_FRAME(14, 4),
+    ANIMCMD_FRAME(10, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastNorthwest2F[] =
+{
+    ANIMCMD_FRAME(8, 4),
+    ANIMCMD_FRAME(9, 4),
+    ANIMCMD_FRAME(9, 4),
+    ANIMCMD_FRAME(8, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastNortheast3F[] =
+{
+    ANIMCMD_FRAME(13, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(10, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(10, 4, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFastNortheast3F_Asym sAnim_GoFastNortheast3F
+
+static const union AnimCmd sAnim_GoFastNortheast2F[] =
+{
+    ANIMCMD_FRAME(8, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(8, 4, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFastNortheast2F_Asym sAnim_GoFastNortheast2F
+
+static const union AnimCmd sAnim_GoFasterSouth3F[] =
 {
     ANIMCMD_FRAME(3, 2),
     ANIMCMD_FRAME(0, 2),
     ANIMCMD_FRAME(4, 2),
     ANIMCMD_FRAME(0, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterSouth2F[] =
+{
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterNorth3F[] =
+{
+    ANIMCMD_FRAME(5, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(6, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterNorth2F[] =
+{
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_FRAME(3, 2),
+    ANIMCMD_FRAME(3, 2),
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterWest3F[] =
+{
+    ANIMCMD_FRAME(7, 2),
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_FRAME(8, 2),
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterWest2F[] =
+{
+    ANIMCMD_FRAME(4, 2),
+    ANIMCMD_FRAME(5, 2),
+    ANIMCMD_FRAME(5, 2),
+    ANIMCMD_FRAME(4, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterEast3F[] =
+{
+    ANIMCMD_FRAME(7, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(2, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(8, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(2, 2, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFasterEast3F_Asym sAnim_GoFasterEast3F
+
+static const union AnimCmd sAnim_GoFasterEast2F[] =
+{
+    ANIMCMD_FRAME(4, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(5, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(5, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(4, 2, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterEast2F_Asym[] =
+{
+    ANIMCMD_FRAME(6, 2),
+    ANIMCMD_FRAME(7, 2),
+    ANIMCMD_FRAME(7, 2),
+    ANIMCMD_FRAME(6, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterSouthwest3F[] =
+{
+    ANIMCMD_FRAME(11, 2),
+    ANIMCMD_FRAME( 9, 2),
+    ANIMCMD_FRAME(12, 2),
+    ANIMCMD_FRAME( 9, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterSouthwest2F[] =
+{
+    ANIMCMD_FRAME(6, 2),
+    ANIMCMD_FRAME(7, 2),
+    ANIMCMD_FRAME(7, 2),
+    ANIMCMD_FRAME(6, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterSoutheast3F[] =
+{
+    ANIMCMD_FRAME(11, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME( 9, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(12, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME( 9, 2, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFasterSoutheast3F_Asym sAnim_GoFasterSoutheast3F
+
+static const union AnimCmd sAnim_GoFasterSoutheast2F[] =
+{
+    ANIMCMD_FRAME(6, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(6, 2, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFasterSoutheast2F_Asym sAnim_GoFasterSoutheast2F
+
+static const union AnimCmd sAnim_GoFasterNorthwest3F[] =
+{
+    ANIMCMD_FRAME(13, 2),
+    ANIMCMD_FRAME(10, 2),
+    ANIMCMD_FRAME(14, 2),
+    ANIMCMD_FRAME(10, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterNorthwest2F[] =
+{
+    ANIMCMD_FRAME(8, 2),
+    ANIMCMD_FRAME(9, 2),
+    ANIMCMD_FRAME(9, 2),
+    ANIMCMD_FRAME(8, 2),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFasterNortheast3F[] =
+{
+    ANIMCMD_FRAME(13, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(10, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(14, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(10, 2, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFasterNortheast3F_Asym sAnim_GoFasterNortheast3F
+
+static const union AnimCmd sAnim_GoFasterNortheast2F[] =
+{
+    ANIMCMD_FRAME(8, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(8, 2, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFasterNortheast2F_Asym sAnim_GoFasterNortheast2F
+
+static const union AnimCmd sAnim_GoFastestSouth3F[] =
+{
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestSouth2F[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestNorth3F[] =
+{
+    ANIMCMD_FRAME(5, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(6, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestNorth2F[] =
+{
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestWest3F[] =
+{
+    ANIMCMD_FRAME(7, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(8, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestWest2F[] =
+{
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(5, 1),
+    ANIMCMD_FRAME(5, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestEast3F[] =
+{
+    ANIMCMD_FRAME(7, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(2, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(8, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(2, 1, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFastestEast3F_Asym sAnim_GoFastestEast3F
+
+static const union AnimCmd sAnim_GoFastestEast2F[] =
+{
+    ANIMCMD_FRAME(4, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(5, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(5, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(4, 1, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestEast2F_Asym[] =
+{
+    ANIMCMD_FRAME(6, 1),
+    ANIMCMD_FRAME(7, 1),
+    ANIMCMD_FRAME(7, 1),
+    ANIMCMD_FRAME(6, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestSouthwest3F[] =
+{
+    ANIMCMD_FRAME(11, 1),
+    ANIMCMD_FRAME( 9, 1),
+    ANIMCMD_FRAME(12, 1),
+    ANIMCMD_FRAME( 9, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestSouthwest2F[] =
+{
+    ANIMCMD_FRAME(6, 1),
+    ANIMCMD_FRAME(7, 1),
+    ANIMCMD_FRAME(7, 1),
+    ANIMCMD_FRAME(6, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestSoutheast3F[] =
+{
+    ANIMCMD_FRAME(11, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME( 9, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(12, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME( 9, 1, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFastestSoutheast3F_Asym sAnim_GoFastestSoutheast3F
+
+static const union AnimCmd sAnim_GoFastestSoutheast2F[] =
+{
+    ANIMCMD_FRAME(6, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(7, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(6, 1, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFastestSoutheast2F_Asym sAnim_GoFastestSoutheast2F
+
+static const union AnimCmd sAnim_GoFastestNorthwest3F[] =
+{
+    ANIMCMD_FRAME(13, 1),
+    ANIMCMD_FRAME(10, 1),
+    ANIMCMD_FRAME(14, 1),
+    ANIMCMD_FRAME(10, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestNorthwest2F[] =
+{
+    ANIMCMD_FRAME(8, 1),
+    ANIMCMD_FRAME(9, 1),
+    ANIMCMD_FRAME(9, 1),
+    ANIMCMD_FRAME(8, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GoFastestNortheast3F[] =
+{
+    ANIMCMD_FRAME(13, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(10, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(14, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(10, 1, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFastestNortheast3F_Asym sAnim_GoFastestNortheast3F
+
+static const union AnimCmd sAnim_GoFastestNortheast2F[] =
+{
+    ANIMCMD_FRAME(8, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(9, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(8, 1, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+#define sAnim_GoFastestNortheast2F_Asym sAnim_GoFastestNortheast2F
+
+const union AnimCmd *const sAnimTable_Walk3F[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast3F,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth3F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast3F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast3F,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast3F,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast3F,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceEast3F,
+    [ANIM_STD_GO_SOUTHWEST] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_SOUTHEAST] = sAnim_GoNorth3F,
+    [ANIM_STD_GO_NORTHWEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_NORTHEAST] = sAnim_GoEast3F,
+    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastEast3F,
+    [ANIM_STD_GO_FASTER_SOUTHWEST] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_SOUTHEAST] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_NORTHWEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_NORTHEAST] = sAnim_GoFasterEast3F,
+    [ANIM_STD_GO_FASTEST_SOUTHWEST] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_SOUTHEAST] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_NORTHWEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_GoFastestEast3F,
+};
+
+const union AnimCmd *const sAnimTable_Walk3F_Asym[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast3F_Asym,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth3F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast3F_Asym,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast3F_Asym,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast3F_Asym,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast3F_Asym,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceEast3F_Asym,
+    [ANIM_STD_GO_SOUTHWEST] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_SOUTHEAST] = sAnim_GoNorth3F,
+    [ANIM_STD_GO_NORTHWEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_NORTHEAST] = sAnim_GoEast3F_Asym,
+    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastEast3F_Asym,
+    [ANIM_STD_GO_FASTER_SOUTHWEST] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_SOUTHEAST] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_NORTHWEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_NORTHEAST] = sAnim_GoFasterEast3F_Asym,
+    [ANIM_STD_GO_FASTEST_SOUTHWEST] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_SOUTHEAST] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_NORTHWEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_GoFastestEast3F_Asym,
+};
+
+const union AnimCmd *const sAnimTable_Walk3F_Diagonal[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast3F,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth3F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast3F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast3F,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast3F,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast3F,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouthwest3F,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceSoutheast3F,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceNorthwest3F,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceNortheast3F,
+    [ANIM_STD_GO_SOUTHWEST] = sAnim_GoSouthwest3F,
+    [ANIM_STD_GO_SOUTHEAST] = sAnim_GoSoutheast3F,
+    [ANIM_STD_GO_NORTHWEST] = sAnim_GoNorthwest3F,
+    [ANIM_STD_GO_NORTHEAST] = sAnim_GoNortheast3F,
+    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_GoFastSouthwest3F,
+    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastSoutheast3F,
+    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastNorthwest3F,
+    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastNortheast3F,
+    [ANIM_STD_GO_FASTER_SOUTHWEST] = sAnim_GoFasterSouthwest3F,
+    [ANIM_STD_GO_FASTER_SOUTHEAST] = sAnim_GoFasterSoutheast3F,
+    [ANIM_STD_GO_FASTER_NORTHWEST] = sAnim_GoFasterNorthwest3F,
+    [ANIM_STD_GO_FASTER_NORTHEAST] = sAnim_GoFasterNortheast3F,
+    [ANIM_STD_GO_FASTEST_SOUTHWEST] = sAnim_GoFastestSouthwest3F,
+    [ANIM_STD_GO_FASTEST_SOUTHEAST] = sAnim_GoFastestSoutheast3F,
+    [ANIM_STD_GO_FASTEST_NORTHWEST] = sAnim_GoFastestNorthwest3F,
+    [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_GoFastestNortheast3F,
+};
+
+const union AnimCmd *const sAnimTable_Walk3F_Diagonal_Asym[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast3F_Asym,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth3F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast3F_Asym,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast3F_Asym,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast3F_Asym,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast3F_Asym,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouthwest3F,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceSoutheast3F_Asym,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceNorthwest3F,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceNortheast3F_Asym,
+    [ANIM_STD_GO_SOUTHWEST] = sAnim_GoSouthwest3F,
+    [ANIM_STD_GO_SOUTHEAST] = sAnim_GoSoutheast3F_Asym,
+    [ANIM_STD_GO_NORTHWEST] = sAnim_GoNorthwest3F,
+    [ANIM_STD_GO_NORTHEAST] = sAnim_GoNortheast3F_Asym,
+    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_GoFastSouthwest3F,
+    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastSoutheast3F_Asym,
+    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastNorthwest3F,
+    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastNortheast3F_Asym,
+    [ANIM_STD_GO_FASTER_SOUTHWEST] = sAnim_GoFasterSouthwest3F,
+    [ANIM_STD_GO_FASTER_SOUTHEAST] = sAnim_GoFasterSoutheast3F_Asym,
+    [ANIM_STD_GO_FASTER_NORTHWEST] = sAnim_GoFasterNorthwest3F,
+    [ANIM_STD_GO_FASTER_NORTHEAST] = sAnim_GoFasterNortheast3F_Asym,
+    [ANIM_STD_GO_FASTEST_SOUTHWEST] = sAnim_GoFastestSouthwest3F,
+    [ANIM_STD_GO_FASTEST_SOUTHEAST] = sAnim_GoFastestSoutheast3F_Asym,
+    [ANIM_STD_GO_FASTEST_NORTHWEST] = sAnim_GoFastestNorthwest3F,
+    [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_GoFastestNortheast3F_Asym,
+};
+
+const union AnimCmd *const sAnimTable_Walk2F[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth2F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth2F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest2F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast2F,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth2F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth2F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest2F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast2F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth2F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth2F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest2F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast2F,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth2F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth2F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest2F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast2F,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth2F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth2F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest2F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast2F,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouth2F,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceNorth2F,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceWest2F,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceEast2F,
+    [ANIM_STD_GO_SOUTHWEST] = sAnim_GoSouth2F,
+    [ANIM_STD_GO_SOUTHEAST] = sAnim_GoNorth2F,
+    [ANIM_STD_GO_NORTHWEST] = sAnim_GoWest2F,
+    [ANIM_STD_GO_NORTHEAST] = sAnim_GoEast2F,
+    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_GoFastSouth2F,
+    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastNorth2F,
+    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastWest2F,
+    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastEast2F,
+    [ANIM_STD_GO_FASTER_SOUTHWEST] = sAnim_GoFasterSouth2F,
+    [ANIM_STD_GO_FASTER_SOUTHEAST] = sAnim_GoFasterNorth2F,
+    [ANIM_STD_GO_FASTER_NORTHWEST] = sAnim_GoFasterWest2F,
+    [ANIM_STD_GO_FASTER_NORTHEAST] = sAnim_GoFasterEast2F,
+    [ANIM_STD_GO_FASTEST_SOUTHWEST] = sAnim_GoFastestSouth2F,
+    [ANIM_STD_GO_FASTEST_SOUTHEAST] = sAnim_GoFastestNorth2F,
+    [ANIM_STD_GO_FASTEST_NORTHWEST] = sAnim_GoFastestWest2F,
+    [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_GoFastestEast2F,
+};
+
+const union AnimCmd *const sAnimTable_Walk2F_Asym[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth2F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth2F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest2F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast2F_Asym,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth2F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth2F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest2F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast2F_Asym,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth2F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth2F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest2F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast2F_Asym,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth2F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth2F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest2F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast2F_Asym,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth2F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth2F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest2F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast2F_Asym,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouth2F,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceNorth2F,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceWest2F,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceEast2F_Asym,
+    [ANIM_STD_GO_SOUTHWEST] = sAnim_GoSouth2F,
+    [ANIM_STD_GO_SOUTHEAST] = sAnim_GoNorth2F,
+    [ANIM_STD_GO_NORTHWEST] = sAnim_GoWest2F,
+    [ANIM_STD_GO_NORTHEAST] = sAnim_GoEast2F_Asym,
+    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_GoFastSouth2F,
+    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastNorth2F,
+    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastWest2F,
+    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastEast2F_Asym,
+    [ANIM_STD_GO_FASTER_SOUTHWEST] = sAnim_GoFasterSouth2F,
+    [ANIM_STD_GO_FASTER_SOUTHEAST] = sAnim_GoFasterNorth2F,
+    [ANIM_STD_GO_FASTER_NORTHWEST] = sAnim_GoFasterWest2F,
+    [ANIM_STD_GO_FASTER_NORTHEAST] = sAnim_GoFasterEast2F_Asym,
+    [ANIM_STD_GO_FASTEST_SOUTHWEST] = sAnim_GoFastestSouth2F,
+    [ANIM_STD_GO_FASTEST_SOUTHEAST] = sAnim_GoFastestNorth2F,
+    [ANIM_STD_GO_FASTEST_NORTHWEST] = sAnim_GoFastestWest2F,
+    [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_GoFastestEast2F_Asym,
+};
+
+const union AnimCmd *const sAnimTable_Walk2F_Diagonal[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth2F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth2F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest2F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast2F,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth2F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth2F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest2F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast2F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth2F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth2F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest2F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast2F,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth2F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth2F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest2F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast2F,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth2F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth2F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest2F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast2F,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouthwest2F,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceSoutheast2F,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceNorthwest2F,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceNortheast2F,
+    [ANIM_STD_GO_SOUTHWEST] = sAnim_GoSouthwest2F,
+    [ANIM_STD_GO_SOUTHEAST] = sAnim_GoSoutheast2F,
+    [ANIM_STD_GO_NORTHWEST] = sAnim_GoNorthwest2F,
+    [ANIM_STD_GO_NORTHEAST] = sAnim_GoNortheast2F,
+    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_GoFastSouthwest2F,
+    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastSoutheast2F,
+    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastNorthwest2F,
+    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastNortheast2F,
+    [ANIM_STD_GO_FASTER_SOUTHWEST] = sAnim_GoFasterSouthwest2F,
+    [ANIM_STD_GO_FASTER_SOUTHEAST] = sAnim_GoFasterSoutheast2F,
+    [ANIM_STD_GO_FASTER_NORTHWEST] = sAnim_GoFasterNorthwest2F,
+    [ANIM_STD_GO_FASTER_NORTHEAST] = sAnim_GoFasterNortheast2F,
+    [ANIM_STD_GO_FASTEST_SOUTHWEST] = sAnim_GoFastestSouthwest2F,
+    [ANIM_STD_GO_FASTEST_SOUTHEAST] = sAnim_GoFastestSoutheast2F,
+    [ANIM_STD_GO_FASTEST_NORTHWEST] = sAnim_GoFastestNorthwest2F,
+    [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_GoFastestNortheast2F,
+};
+
+const union AnimCmd *const sAnimTable_Walk2F_Diagonal_Asym[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth2F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth2F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest2F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast2F_Asym,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth2F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth2F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest2F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast2F_Asym,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth2F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth2F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest2F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast2F_Asym,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth2F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth2F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest2F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast2F_Asym,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth2F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth2F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest2F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast2F_Asym,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouthwest2F,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceSoutheast2F_Asym,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceNorthwest2F,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceNortheast2F_Asym,
+    [ANIM_STD_GO_SOUTHWEST] = sAnim_GoSouthwest2F,
+    [ANIM_STD_GO_SOUTHEAST] = sAnim_GoSoutheast2F_Asym,
+    [ANIM_STD_GO_NORTHWEST] = sAnim_GoNorthwest2F,
+    [ANIM_STD_GO_NORTHEAST] = sAnim_GoNortheast2F_Asym,
+    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_GoFastSouthwest2F,
+    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastSoutheast2F_Asym,
+    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastNorthwest2F,
+    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastNortheast2F_Asym,
+    [ANIM_STD_GO_FASTER_SOUTHWEST] = sAnim_GoFasterSouthwest2F,
+    [ANIM_STD_GO_FASTER_SOUTHEAST] = sAnim_GoFasterSoutheast2F_Asym,
+    [ANIM_STD_GO_FASTER_NORTHWEST] = sAnim_GoFasterNorthwest2F,
+    [ANIM_STD_GO_FASTER_NORTHEAST] = sAnim_GoFasterNortheast2F_Asym,
+    [ANIM_STD_GO_FASTEST_SOUTHWEST] = sAnim_GoFastestSouthwest2F,
+    [ANIM_STD_GO_FASTEST_SOUTHEAST] = sAnim_GoFastestSoutheast2F_Asym,
+    [ANIM_STD_GO_FASTEST_NORTHWEST] = sAnim_GoFastestNorthwest2F,
+    [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_GoFastestNortheast2F_Asym,
+};
+
+static const union AnimCmd sAnim_EnterSouth[] =
+{
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 3),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_EnterNorth[] =
+{
+    ANIMCMD_FRAME(2, 8),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 3),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_EnterWest[] =
+{
+    ANIMCMD_FRAME(4, 8),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 3),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_EnterEast[] =
+{
+    ANIMCMD_FRAME(4, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 3),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_EnterEast_Asym[] =
+{
+    ANIMCMD_FRAME(6, 8),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(0, 3),
     ANIMCMD_JUMP(0),
 };
 
@@ -459,102 +1432,6 @@ static const union AnimCmd sAnim_ExitPokeballEast_Asym[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_EnterSouth[] =
-{
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_FRAME(0, 3),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFasterNorth[] =
-{
-    ANIMCMD_FRAME(5, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(6, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_EnterNorth[] =
-{
-    ANIMCMD_FRAME(2, 8),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_FRAME(0, 3),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFasterWest[] =
-{
-    ANIMCMD_FRAME(7, 2),
-    ANIMCMD_FRAME(2, 2),
-    ANIMCMD_FRAME(8, 2),
-    ANIMCMD_FRAME(2, 2),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_EnterWest[] =
-{
-    ANIMCMD_FRAME(4, 8),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_FRAME(0, 3),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFasterEast[] =
-{
-    ANIMCMD_FRAME(7, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(2, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(8, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(2, 2, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_EnterEast[] =
-{
-    ANIMCMD_FRAME(4, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_FRAME(0, 3),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_EnterEast_Asym[] =
-{
-    ANIMCMD_FRAME(6, 8),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_FRAME(0, 3),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFastestSouth[] =
-{
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_JUMP(0),
-};
-
 static const union AnimCmd sAnim_ExitPokeballFastSouth[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -615,67 +1492,9 @@ static const union AnimCmd sAnim_ExitPokeballFastEast_Asym[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_GoFastestNorth[] =
+static const union AnimCmd* const sAnimTable_Pokeball[] =
 {
-    ANIMCMD_FRAME(5, 1),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_FRAME(6, 1),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_JUMP(0),
-};
 
-static const union AnimCmd sAnim_GoFastestWest[] =
-{
-    ANIMCMD_FRAME(7, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_FRAME(8, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFastestEast[] =
-{
-    ANIMCMD_FRAME(7, 1, .hFlip = TRUE),
-    ANIMCMD_FRAME(2, 1, .hFlip = TRUE),
-    ANIMCMD_FRAME(8, 1, .hFlip = TRUE),
-    ANIMCMD_FRAME(2, 1, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_RunSouth[] =
-{
-    ANIMCMD_FRAME(12, 5),
-    ANIMCMD_FRAME(9, 3),
-    ANIMCMD_FRAME(13, 5),
-    ANIMCMD_FRAME(9, 3),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_RunNorth[] =
-{
-    ANIMCMD_FRAME(14, 5),
-    ANIMCMD_FRAME(10, 3),
-    ANIMCMD_FRAME(15, 5),
-    ANIMCMD_FRAME(10, 3),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_RunWest[] =
-{
-    ANIMCMD_FRAME(16, 5),
-    ANIMCMD_FRAME(11, 3),
-    ANIMCMD_FRAME(17, 5),
-    ANIMCMD_FRAME(11, 3),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_RunEast[] =
-{
-    ANIMCMD_FRAME(16, 5, .hFlip = TRUE),
-    ANIMCMD_FRAME(11, 3, .hFlip = TRUE),
-    ANIMCMD_FRAME(17, 5, .hFlip = TRUE),
-    ANIMCMD_FRAME(11, 3, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
 };
 
 static const union AnimCmd sAnim_FieldMove[] =
@@ -688,9 +1507,137 @@ static const union AnimCmd sAnim_FieldMove[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd *const sAnimTable_FieldMove[] = {
+    [ANIM_FIELD_MOVE] = sAnim_FieldMove,
+};
+
+static const union AnimCmd sAnim_RockBreak[] =
+{
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(1, 8),
+    ANIMCMD_FRAME(2, 8),
+    ANIMCMD_FRAME(3, 8),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sAnimTable_BreakableRock[] = {
+    [ANIM_STAY_STILL] = sAnim_StayStill,
+    [ANIM_REMOVE_OBSTACLE] = sAnim_RockBreak,
+};
+
+static const union AnimCmd sAnim_TreeCut[] =
+{
+    ANIMCMD_FRAME(0, 6),
+    ANIMCMD_FRAME(1, 6),
+    ANIMCMD_FRAME(2, 6),
+    ANIMCMD_FRAME(3, 6),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sAnimTable_CuttableTree[] = {
+    [ANIM_STAY_STILL] = sAnim_StayStill,
+    [ANIM_REMOVE_OBSTACLE] = sAnim_TreeCut,
+};
+
+static const union AnimCmd sAnim_Surfing_FaceSouthwest[] =
+{
+    ANIMCMD_FRAME(12, 16),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_FaceSoutheast[] =
+{
+    ANIMCMD_FRAME(12, 16, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_FaceNorthwest[] =
+{
+    ANIMCMD_FRAME(14, 16),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_FaceNortheast[] =
+{
+    ANIMCMD_FRAME(14, 16, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_GoSouthwest[] =
+{
+    ANIMCMD_FRAME(12, 8),
+    ANIMCMD_FRAME(12, 8),
+    ANIMCMD_FRAME(12, 8),
+    ANIMCMD_FRAME(12, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_GoSoutheast[] =
+{
+    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_GoNorthwest[] =
+{
+    ANIMCMD_FRAME(14, 8),
+    ANIMCMD_FRAME(14, 8),
+    ANIMCMD_FRAME(14, 8),
+    ANIMCMD_FRAME(14, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_GoNortheast[] =
+{
+    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
+    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_GoFastSouthwest[] =
+{
+    ANIMCMD_FRAME(12, 4),
+    ANIMCMD_FRAME(12, 4),
+    ANIMCMD_FRAME(12, 4),
+    ANIMCMD_FRAME(12, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_GoFastSoutheast[] =
+{
+    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_GoFastNorthwest[] =
+{
+    ANIMCMD_FRAME(14, 4),
+    ANIMCMD_FRAME(14, 4),
+    ANIMCMD_FRAME(14, 4),
+    ANIMCMD_FRAME(14, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_Surfing_GoFastNortheast[] =
+{
+    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
 static const union AnimCmd sAnim_GetOnOffSurfBlobSouth[] =
 {
-    ANIMCMD_FRAME(9, 32),
+    ANIMCMD_FRAME( 9, 32),
     ANIMCMD_JUMP(0),
 };
 
@@ -712,1135 +1659,71 @@ static const union AnimCmd sAnim_GetOnOffSurfBlobEast[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_BunnyHopBackWheelSouth[] =
-{
-    ANIMCMD_FRAME(9, 4),
-    ANIMCMD_FRAME(10, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BunnyHopBackWheelNorth[] =
-{
-    ANIMCMD_FRAME(13, 4),
-    ANIMCMD_FRAME(14, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BunnyHopBackWheelWest[] =
-{
-    ANIMCMD_FRAME(17, 4),
-    ANIMCMD_FRAME(18, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BunnyHopBackWheelEast[] =
-{
-    ANIMCMD_FRAME(17, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(18, 4, .hFlip = TRUE),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BunnyHopFrontWheelSouth[] =
-{
-    ANIMCMD_FRAME(11, 4),
-    ANIMCMD_FRAME(12, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BunnyHopFrontWheelNorth[] =
-{
-    ANIMCMD_FRAME(15, 4),
-    ANIMCMD_FRAME(16, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BunnyHopFrontWheelWest[] =
-{
-    ANIMCMD_FRAME(19, 4),
-    ANIMCMD_FRAME(20, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BunnyHopFrontWheelEast[] =
-{
-    ANIMCMD_FRAME(19, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(20, 4, .hFlip = TRUE),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_StandingWheelieBackWheelSouth[] =
-{
-    ANIMCMD_FRAME(9, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_StandingWheelieBackWheelNorth[] =
-{
-    ANIMCMD_FRAME(13, 4),
-    ANIMCMD_FRAME(1, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_StandingWheelieBackWheelWest[] =
-{
-    ANIMCMD_FRAME(17, 4),
-    ANIMCMD_FRAME(2, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_StandingWheelieBackWheelEast[] =
-{
-    ANIMCMD_FRAME(17, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(2, 4, .hFlip = TRUE),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_StandingWheelieFrontWheelSouth[] =
-{
-    ANIMCMD_FRAME(11, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_StandingWheelieFrontWheelNorth[] =
-{
-    ANIMCMD_FRAME(15, 4),
-    ANIMCMD_FRAME(1, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_StandingWheelieFrontWheelWest[] =
-{
-    ANIMCMD_FRAME(19, 4),
-    ANIMCMD_FRAME(2, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_StandingWheelieFrontWheelEast[] =
-{
-    ANIMCMD_FRAME(19, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(2, 4, .hFlip = TRUE),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_MovingWheelieSouth[] =
-{
-    ANIMCMD_FRAME(21, 4),
-    ANIMCMD_FRAME(10, 4),
-    ANIMCMD_FRAME(22, 4),
-    ANIMCMD_FRAME(10, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_MovingWheelieNorth[] =
-{
-    ANIMCMD_FRAME(23, 4),
-    ANIMCMD_FRAME(14, 4),
-    ANIMCMD_FRAME(24, 4),
-    ANIMCMD_FRAME(14, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_MovingWheelieWest[] =
-{
-    ANIMCMD_FRAME(25, 4),
-    ANIMCMD_FRAME(18, 4),
-    ANIMCMD_FRAME(26, 4),
-    ANIMCMD_FRAME(18, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_MovingWheelieEast[] =
-{
-    ANIMCMD_FRAME(25, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(18, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(26, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(18, 4, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_BerryTreeStage0[] =
-{
-    ANIMCMD_FRAME(0, 32),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BerryTreeStage1[] =
-{
-    ANIMCMD_FRAME(1, 32),
-    ANIMCMD_FRAME(2, 32),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BerryTreeStage2[] =
-{
-    ANIMCMD_FRAME(3, 48),
-    ANIMCMD_FRAME(4, 48),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BerryTreeStage3[] =
-{
-    ANIMCMD_FRAME(5, 32),
-    ANIMCMD_FRAME(5, 32),
-    ANIMCMD_FRAME(6, 32),
-    ANIMCMD_FRAME(6, 32),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BerryTreeStage4[] =
-{
-    ANIMCMD_FRAME(7, 48),
-    ANIMCMD_FRAME(7, 48),
-    ANIMCMD_FRAME(8, 48),
-    ANIMCMD_FRAME(8, 48),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_NurseBow[] =
-{
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(9, 32),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_RockBreak[] =
-{
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(1, 8),
-    ANIMCMD_FRAME(2, 8),
-    ANIMCMD_FRAME(3, 8),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_TreeCut[] =
-{
-    ANIMCMD_FRAME(0, 6),
-    ANIMCMD_FRAME(1, 6),
-    ANIMCMD_FRAME(2, 6),
-    ANIMCMD_FRAME(3, 6),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_TakeOutRodSouth[] =
-{
-    ANIMCMD_FRAME(8, 4),
-    ANIMCMD_FRAME(9, 4),
-    ANIMCMD_FRAME(10, 4),
-    ANIMCMD_FRAME(11, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_TakeOutRodNorth[] =
-{
-    ANIMCMD_FRAME(4, 4),
-    ANIMCMD_FRAME(5, 4),
-    ANIMCMD_FRAME(6, 4),
-    ANIMCMD_FRAME(7, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_TakeOutRodWest[] =
-{
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(1, 4),
-    ANIMCMD_FRAME(2, 4),
-    ANIMCMD_FRAME(3, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_TakeOutRodEast[] =
-{
-    ANIMCMD_FRAME(0, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(1, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(2, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(3, 4, .hFlip = TRUE),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_PutAwayRodSouth[] =
-{
-    ANIMCMD_FRAME(11, 4),
-    ANIMCMD_FRAME(10, 6),
-    ANIMCMD_FRAME(9, 6),
-    ANIMCMD_FRAME(8, 6),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_PutAwayRodNorth[] =
-{
-    ANIMCMD_FRAME(7, 4),
-    ANIMCMD_FRAME(6, 6),
-    ANIMCMD_FRAME(5, 6),
-    ANIMCMD_FRAME(4, 6),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_PutAwayRodWest[] =
-{
-    ANIMCMD_FRAME(3, 4),
-    ANIMCMD_FRAME(2, 4),
-    ANIMCMD_FRAME(1, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_PutAwayRodEast[] =
-{
-    ANIMCMD_FRAME(3, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(2, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(1, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(0, 4, .hFlip = TRUE),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_HookedPokemonSouth[] =
-{
-    ANIMCMD_FRAME(10, 6),
-    ANIMCMD_FRAME(11, 6),
-    ANIMCMD_LOOP(1),
-    ANIMCMD_FRAME(11, 30),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_HookedPokemonNorth[] =
-{
-    ANIMCMD_FRAME(6, 6),
-    ANIMCMD_FRAME(7, 6),
-    ANIMCMD_LOOP(1),
-    ANIMCMD_FRAME(7, 30),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_HookedPokemonWest[] =
-{
-    ANIMCMD_FRAME(2, 6),
-    ANIMCMD_FRAME(3, 6),
-    ANIMCMD_LOOP(1),
-    ANIMCMD_FRAME(3, 30),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_HookedPokemonEast[] =
-{
-    ANIMCMD_FRAME(2, 6, .hFlip = TRUE),
-    ANIMCMD_FRAME(3, 6, .hFlip = TRUE),
-    ANIMCMD_LOOP(1),
-    ANIMCMD_FRAME(3, 30, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AffineAnimCmd sAffineAnim_KyogreGroudon_GoSouthStart[] =
-{
-    AFFINEANIMCMD_FRAME(0x0, 0x0, 1, 1),
-    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
-    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
-    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
-    AFFINEANIMCMD_LOOP(7),
-    AFFINEANIMCMD_JUMP(0),
-};
-
-static const union AffineAnimCmd sAffineAnim_KyogreGroudon_GoSouth[] =
-{
-    AFFINEANIMCMD_FRAME(0x0, 0x0, -1, 1),
-    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
-    AFFINEANIMCMD_LOOP(15),
-    AFFINEANIMCMD_FRAME(0x0, 0x0, 1, 1),
-    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
-    AFFINEANIMCMD_LOOP(15),
-    AFFINEANIMCMD_JUMP(0),
-};
-
-static const union AffineAnimCmd sAffineAnim_KyogreGroudon_AttackEast[] =
-{
-    AFFINEANIMCMD_FRAME(0x100, 0x100, 10, 0),
-    AFFINEANIMCMD_END,
-};
-
-static const union AffineAnimCmd sAffineAnim_KyogreGroudon_AttackWest[] =
-{
-    AFFINEANIMCMD_FRAME(0x100, 0x100, 10, 0),
-    AFFINEANIMCMD_END,
-};
-
-static const union AffineAnimCmd sAffineAnim_KyogreGroudon_DipEast[] =
-{
-    AFFINEANIMCMD_FRAME(0x0, 0x0, -1, 1),
-    AFFINEANIMCMD_LOOP(8),
-    AFFINEANIMCMD_END,
-};
-
-static const union AffineAnimCmd sAffineAnim_KyogreGroudon_DipWest[] =
-{
-    AFFINEANIMCMD_FRAME(0x0, 0x0, 1, 1),
-    AFFINEANIMCMD_LOOP(8),
-    AFFINEANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_HoOhFlapWings[] =
-{
-    ANIMCMD_FRAME(3, 8),
-    ANIMCMD_FRAME(4, 8),
-    ANIMCMD_FRAME(3, 8),
-    ANIMCMD_FRAME(4, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_HoOhStayStill[] =
-{
-    ANIMCMD_FRAME(3, 16),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd *const sAnimTable_Inanimate[] = {
-    [ANIM_STAY_STILL] = sAnim_StayStill,
-};
-
-static const union AnimCmd *const sAnimTable_QuintyPlump[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_QuintyPlumpFaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_QuintyPlumpFaceNorth,
-    [ANIM_STD_FACE_WEST] = sAnim_QuintyPlumpFaceWest,
-    [ANIM_STD_FACE_EAST] = sAnim_QuintyPlumpFaceEast,
-    [ANIM_STD_GO_SOUTH] = sAnim_QuintyPlumpGoSouth,
-    [ANIM_STD_GO_NORTH] = sAnim_QuintyPlumpGoNorth,
-    [ANIM_STD_GO_WEST] = sAnim_QuintyPlumpGoWest,
-    [ANIM_STD_GO_EAST] = sAnim_QuintyPlumpGoEast,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_QuintyPlumpGoFastSouth,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_QuintyPlumpGoFastNorth,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_QuintyPlumpGoFastWest,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_QuintyPlumpGoFastEast,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_QuintyPlumpGoFasterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_QuintyPlumpGoFasterNorth,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_QuintyPlumpGoFasterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_QuintyPlumpGoFasterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_QuintyPlumpGoFastestSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_QuintyPlumpGoFastestNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_QuintyPlumpGoFastestWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_QuintyPlumpGoFastestEast,
-};
-
-static const union AnimCmd sAnim_FaceSouthwest[] =
-{
-    ANIMCMD_FRAME(9, 16),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_FaceSoutheast[] =
-{
-    ANIMCMD_FRAME(9, 16, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_FaceNorthwest[] =
-{
-    ANIMCMD_FRAME(10, 16),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_FaceNortheast[] =
-{
-    ANIMCMD_FRAME(10, 16, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoSouthwest[] =
-{
-    ANIMCMD_FRAME(11, 8),
-    ANIMCMD_FRAME(9, 8),
-    ANIMCMD_FRAME(12, 8),
-    ANIMCMD_FRAME(9, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoSoutheast[] =
-{
-    ANIMCMD_FRAME(11, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 8, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoNorthwest[] =
-{
-    ANIMCMD_FRAME(13, 8),
-    ANIMCMD_FRAME(10, 8),
-    ANIMCMD_FRAME(14, 8),
-    ANIMCMD_FRAME(10, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoNortheast[] =
-{
-    ANIMCMD_FRAME(13, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 8, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFastSouthwest[] =
-{
-    ANIMCMD_FRAME(11, 4),
-    ANIMCMD_FRAME(9, 4),
-    ANIMCMD_FRAME(12, 4),
-    ANIMCMD_FRAME(9, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFastSoutheast[] =
-{
-    ANIMCMD_FRAME(11, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 4, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFastNorthwest[] =
-{
-    ANIMCMD_FRAME(13, 4),
-    ANIMCMD_FRAME(10, 4),
-    ANIMCMD_FRAME(14, 4),
-    ANIMCMD_FRAME(10, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFastNortheast[] =
-{
-    ANIMCMD_FRAME(13, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 4, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFasterSouthwest[] =
-{
-    ANIMCMD_FRAME(11, 2),
-    ANIMCMD_FRAME(9, 2),
-    ANIMCMD_FRAME(12, 2),
-    ANIMCMD_FRAME(9, 2),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFasterSoutheast[] =
-{
-    ANIMCMD_FRAME(11, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 2, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFasterNorthwest[] =
-{
-    ANIMCMD_FRAME(13, 2),
-    ANIMCMD_FRAME(10, 2),
-    ANIMCMD_FRAME(14, 2),
-    ANIMCMD_FRAME(10, 2),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GoFasterNortheast[] =
-{
-    ANIMCMD_FRAME(13, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 2, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd *const sAnimTable_Standard[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast,
-    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth,
-    [ANIM_STD_GO_NORTH] = sAnim_GoNorth,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
-    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceNorth,
-    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceNorth,
-    [ANIM_STD_GO_SOUTHWEST] = sAnim_GoSouth,
-    [ANIM_STD_GO_SOUTHEAST] = sAnim_GoSouth,
-    [ANIM_STD_GO_NORTHWEST] = sAnim_GoNorth,
-    [ANIM_STD_GO_NORTHEAST] = sAnim_GoNorth,
-    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_GoFastSouth,
-    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastSouth,
-    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastNorth,
-    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastNorth,
-    [ANIM_STD_GO_FASTER_SOUTHWEST] = sAnim_GoFasterSouth,
-    [ANIM_STD_GO_FASTER_SOUTHEAST] = sAnim_GoFasterSouth,
-    [ANIM_STD_GO_FASTER_NORTHWEST] = sAnim_GoFasterNorth,
-    [ANIM_STD_GO_FASTER_NORTHEAST] = sAnim_GoFasterNorth,
-    [ANIM_STD_GO_FASTEST_SOUTHWEST] = sAnim_GoFastestSouth,
-    [ANIM_STD_GO_FASTEST_SOUTHEAST] = sAnim_GoFastestSouth,
-    [ANIM_STD_GO_FASTEST_NORTHWEST] = sAnim_GoFastestNorth,
-    [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_GoFastestNorth,
-};
-
-static const union AnimCmd sAnim_Diagonal_FaceSouthwest[] =
-{
-    ANIMCMD_FRAME(9, 16),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_FaceSoutheast[] =
-{
-    ANIMCMD_FRAME(9, 16, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_FaceNorthwest[] =
-{
-    ANIMCMD_FRAME(10, 16),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_FaceNortheast[] =
-{
-    ANIMCMD_FRAME(10, 16, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoSouthwest[] =
-{
-    ANIMCMD_FRAME(11, 8),
-    ANIMCMD_FRAME(9, 8),
-    ANIMCMD_FRAME(12, 8),
-    ANIMCMD_FRAME(9, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoSoutheast[] =
-{
-    ANIMCMD_FRAME(11, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 8, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoNorthwest[] =
-{
-    ANIMCMD_FRAME(13, 8),
-    ANIMCMD_FRAME(10, 8),
-    ANIMCMD_FRAME(14, 8),
-    ANIMCMD_FRAME(10, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoNortheast[] =
-{
-    ANIMCMD_FRAME(13, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 8, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastSouthwest[] =
-{
-    ANIMCMD_FRAME(11, 4),
-    ANIMCMD_FRAME(9, 4),
-    ANIMCMD_FRAME(12, 4),
-    ANIMCMD_FRAME(9, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastSoutheast[] =
-{
-    ANIMCMD_FRAME(11, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 4, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastNorthwest[] =
-{
-    ANIMCMD_FRAME(13, 4),
-    ANIMCMD_FRAME(10, 4),
-    ANIMCMD_FRAME(14, 4),
-    ANIMCMD_FRAME(10, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastNortheast[] =
-{
-    ANIMCMD_FRAME(13, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 4, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_FaceSouthwest2F[] =
-{
-    ANIMCMD_FRAME(6, 16),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_FaceSoutheast2F[] =
-{
-    ANIMCMD_FRAME(6, 16, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_FaceNorthwest2F[] =
-{
-    ANIMCMD_FRAME(8, 16),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_FaceNortheast2F[] =
-{
-    ANIMCMD_FRAME(8, 16, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoSouthwest2F[] =
-{
-    ANIMCMD_FRAME(6, 8),
-    ANIMCMD_FRAME(7, 8),
-    ANIMCMD_FRAME(7, 8),
-    ANIMCMD_FRAME(6, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoSoutheast2F[] =
-{
-    ANIMCMD_FRAME(6, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(7, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(7, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(6, 8, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoNorthwest2F[] =
-{
-    ANIMCMD_FRAME(8, 8),
-    ANIMCMD_FRAME(9, 8),
-    ANIMCMD_FRAME(9, 8),
-    ANIMCMD_FRAME(8, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoNortheast2F[] =
-{
-    ANIMCMD_FRAME(8, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(8, 8, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastSouthwest2F[] =
-{
-    ANIMCMD_FRAME(6, 4),
-    ANIMCMD_FRAME(7, 4),
-    ANIMCMD_FRAME(7, 4),
-    ANIMCMD_FRAME(6, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastSoutheast2F[] =
-{
-    ANIMCMD_FRAME(6, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(7, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(7, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(6, 4, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastNorthwest2F[] =
-{
-    ANIMCMD_FRAME(8, 4),
-    ANIMCMD_FRAME(9, 4),
-    ANIMCMD_FRAME(9, 4),
-    ANIMCMD_FRAME(8, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastNortheast2F[] =
-{
-    ANIMCMD_FRAME(8, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(8, 4, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFasterSouthwest[] =
-{
-    ANIMCMD_FRAME(11, 2),
-    ANIMCMD_FRAME(9, 2),
-    ANIMCMD_FRAME(12, 2),
-    ANIMCMD_FRAME(9, 2),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFasterSoutheast[] =
-{
-    ANIMCMD_FRAME(11, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 2, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFasterNorthwest[] =
-{
-    ANIMCMD_FRAME(13, 2),
-    ANIMCMD_FRAME(10, 2),
-    ANIMCMD_FRAME(14, 2),
-    ANIMCMD_FRAME(10, 2),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFasterNortheast[] =
-{
-    ANIMCMD_FRAME(13, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 2, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastestSouthwest[] =
-{
-    ANIMCMD_FRAME(11, 1),
-    ANIMCMD_FRAME(9, 1),
-    ANIMCMD_FRAME(12, 1),
-    ANIMCMD_FRAME(9, 1),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastestSoutheast[] =
-{
-    ANIMCMD_FRAME(11, 1, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 1, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 1, .hFlip = TRUE),
-    ANIMCMD_FRAME(9, 1, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastestNorthwest[] =
-{
-    ANIMCMD_FRAME(13, 1),
-    ANIMCMD_FRAME(10, 1),
-    ANIMCMD_FRAME(14, 1),
-    ANIMCMD_FRAME(10, 1),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Diagonal_GoFastestNortheast[] =
-{
-    ANIMCMD_FRAME(13, 1, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 1, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 1, .hFlip = TRUE),
-    ANIMCMD_FRAME(10, 1, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-const union AnimCmd *const sAnimTable_Standard_Diagonal[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast,
-    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth,
-    [ANIM_STD_GO_NORTH] = sAnim_GoNorth,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
-    [ANIM_STD_FACE_SOUTHWEST] = sAnim_Diagonal_FaceSouthwest,
-    [ANIM_STD_FACE_SOUTHEAST] = sAnim_Diagonal_FaceSoutheast,
-    [ANIM_STD_FACE_NORTHWEST] = sAnim_Diagonal_FaceNorthwest,
-    [ANIM_STD_FACE_NORTHEAST] = sAnim_Diagonal_FaceNortheast,
-    [ANIM_STD_GO_SOUTHWEST] = sAnim_Diagonal_GoSouthwest,
-    [ANIM_STD_GO_SOUTHEAST] = sAnim_Diagonal_GoSoutheast,
-    [ANIM_STD_GO_NORTHWEST] = sAnim_Diagonal_GoNorthwest,
-    [ANIM_STD_GO_NORTHEAST] = sAnim_Diagonal_GoNortheast,
-    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_Diagonal_GoFastSouthwest,
-    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_Diagonal_GoFastSoutheast,
-    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_Diagonal_GoFastNorthwest,
-    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_Diagonal_GoFastNortheast,
-    [ANIM_STD_GO_FASTER_SOUTHWEST] = sAnim_Diagonal_GoFasterSouthwest,
-    [ANIM_STD_GO_FASTER_SOUTHEAST] = sAnim_Diagonal_GoFasterSoutheast,
-    [ANIM_STD_GO_FASTER_NORTHWEST] = sAnim_Diagonal_GoFasterNorthwest,
-    [ANIM_STD_GO_FASTER_NORTHEAST] = sAnim_Diagonal_GoFasterNortheast,
-    [ANIM_STD_GO_FASTEST_SOUTHWEST] = sAnim_Diagonal_GoFastestSouthwest,
-    [ANIM_STD_GO_FASTEST_SOUTHEAST] = sAnim_Diagonal_GoFastestSoutheast,
-    [ANIM_STD_GO_FASTEST_NORTHWEST] = sAnim_Diagonal_GoFastestNorthwest,
-    [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_Diagonal_GoFastestNortheast,
-};
-
-const union AnimCmd *const sAnimTable_Following[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth2F,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest2F,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast2F,
-    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth2F,
-    [ANIM_STD_GO_NORTH] = sAnim_GoNorth2F,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest2F,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast2F,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth2F,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth2F,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest2F,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast2F,
-    // used for visual cardinal movement based on last cardinal movement
-    [ANIM_STD_FACE_SOUTHWEST] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_SOUTHEAST] = sAnim_FaceNorth2F,
-    [ANIM_STD_FACE_NORTHWEST] = sAnim_FaceWest2F,
-    [ANIM_STD_FACE_NORTHEAST] = sAnim_FaceEast2F,
-    [ANIM_STD_GO_SOUTHWEST] = sAnim_GoSouth2F,
-    [ANIM_STD_GO_SOUTHEAST] = sAnim_GoNorth2F,
-    [ANIM_STD_GO_NORTHWEST] = sAnim_GoWest2F,
-    [ANIM_STD_GO_NORTHEAST] = sAnim_GoEast2F,
-    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_GoFastSouth2F,
-    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_GoFastNorth2F,
-    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_GoFastWest2F,
-    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_GoFastEast2F,
-    // 'Faster' and above used for entering/exiting pokeball
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_EnterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_EnterNorth,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_EnterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_EnterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_ExitPokeballSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_ExitPokeballNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_ExitPokeballWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_ExitPokeballEast,
-    [ANIM_EXIT_POKEBALL_FAST_SOUTH] = sAnim_ExitPokeballFastSouth,
-    [ANIM_EXIT_POKEBALL_FAST_NORTH] = sAnim_ExitPokeballFastNorth,
-    [ANIM_EXIT_POKEBALL_FAST_WEST] = sAnim_ExitPokeballFastWest,
-    [ANIM_EXIT_POKEBALL_FAST_EAST] = sAnim_ExitPokeballFastEast,
-};
-
-const union AnimCmd *const sAnimTable_Following_Diagonal[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth2F,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest2F,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast2F,
-    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth2F,
-    [ANIM_STD_GO_NORTH] = sAnim_GoNorth2F,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest2F,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast2F,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth2F,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth2F,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest2F,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast2F,
-    [ANIM_STD_FACE_SOUTHWEST] = sAnim_Diagonal_FaceSouthwest2F,
-    [ANIM_STD_FACE_SOUTHEAST] = sAnim_Diagonal_FaceSoutheast2F,
-    [ANIM_STD_FACE_NORTHWEST] = sAnim_Diagonal_FaceNorthwest2F,
-    [ANIM_STD_FACE_NORTHEAST] = sAnim_Diagonal_FaceNortheast2F,
-    [ANIM_STD_GO_SOUTHWEST] = sAnim_Diagonal_GoSouthwest2F,
-    [ANIM_STD_GO_SOUTHEAST] = sAnim_Diagonal_GoSoutheast2F,
-    [ANIM_STD_GO_NORTHWEST] = sAnim_Diagonal_GoNorthwest2F,
-    [ANIM_STD_GO_NORTHEAST] = sAnim_Diagonal_GoNortheast2F,
-    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_Diagonal_GoFastSouthwest2F,
-    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_Diagonal_GoFastSoutheast2F,
-    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_Diagonal_GoFastNorthwest2F,
-    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_Diagonal_GoFastNortheast2F,
-    // 'Faster' and above used for entering/exiting pokeball
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_EnterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_EnterNorth,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_EnterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_EnterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_ExitPokeballSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_ExitPokeballNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_ExitPokeballWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_ExitPokeballEast,
-    [ANIM_EXIT_POKEBALL_FAST_SOUTH] = sAnim_ExitPokeballFastSouth,
-    [ANIM_EXIT_POKEBALL_FAST_NORTH] = sAnim_ExitPokeballFastNorth,
-    [ANIM_EXIT_POKEBALL_FAST_WEST] = sAnim_ExitPokeballFastWest,
-    [ANIM_EXIT_POKEBALL_FAST_EAST] = sAnim_ExitPokeballFastEast,
-};
-
-// Like the above, but has separate frames for facing right
-static const union AnimCmd *const sAnimTable_Following_Asym[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth2F,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest2F,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast2F_Asym,
-    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth2F,
-    [ANIM_STD_GO_NORTH] = sAnim_GoNorth2F,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest2F,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast2F_Asym,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth2F,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth2F,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest2F,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast2F_Asym,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_EnterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_EnterNorth,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_EnterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_EnterEast_Asym,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_ExitPokeballSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_ExitPokeballNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_ExitPokeballWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_ExitPokeballEast_Asym,
-    [ANIM_EXIT_POKEBALL_FAST_SOUTH] = sAnim_ExitPokeballFastSouth,
-    [ANIM_EXIT_POKEBALL_FAST_NORTH] = sAnim_ExitPokeballFastNorth,
-    [ANIM_EXIT_POKEBALL_FAST_WEST] = sAnim_ExitPokeballFastWest,
-    [ANIM_EXIT_POKEBALL_FAST_EAST] = sAnim_ExitPokeballFastEast_Asym,
-};
-
-static const union AnimCmd *const sAnimTable_HoOh[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast,
-    [ANIM_STD_GO_SOUTH] = sAnim_HoOhFlapWings,
-    [ANIM_STD_GO_NORTH] = sAnim_HoOhStayStill,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
-};
-
-// The movements for going up use the animations for going right instead.
-static const union AnimCmd *const sAnimTable_GroudonSide[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast,
-    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth,
-    [ANIM_STD_GO_NORTH] = sAnim_GoEast,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastEast,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterEast,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestEast,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
-};
-
-static const union AnimCmd sAnim_RayquazaCoiledAwake[] =
-{
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_RayquazaFlyUp[] =
-{
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_RayquazaCoiledAsleep[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_RayquazaCoiledMouthOpen[] =
-{
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_RayquazaNormal[] =
-{
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_JUMP(0),
-};
-
-// Identical to sAnim_RayquazaCoiledAsleep
-static const union AnimCmd sAnim_RayquazaFaceSouth[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_JUMP(0),
-};
-
-// Identical to sAnim_RayquazaCoiledAsleep
-static const union AnimCmd sAnim_RayquazaFaceNorth[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_JUMP(0),
-};
-
-// Identical to sAnim_RayquazaCoiledAsleep
-static const union AnimCmd sAnim_RayquazaFaceWest[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_JUMP(0),
-};
-
-// Identical to sAnim_RayquazaNormal
-static const union AnimCmd sAnim_RayquazaFaceEast[] =
-{
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_JUMP(0),
-};
-
-// Though they correspond to facing/walking movements, Rayquaza doesn't have
-// equivalent images aside from flying up. Its other frames aside from the 'normal'
-// frame are for the sequence where it awakens on Sky Pillar.
-static const union AnimCmd *const sAnimTable_Rayquaza[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_RayquazaFaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_RayquazaFaceNorth,
-    [ANIM_STD_FACE_WEST] = sAnim_RayquazaFaceWest,
-    [ANIM_STD_FACE_EAST] = sAnim_RayquazaFaceEast,
-    [ANIM_STD_GO_SOUTH] = sAnim_RayquazaCoiledAsleep,
-    [ANIM_STD_GO_NORTH] = sAnim_RayquazaFlyUp,
-    [ANIM_STD_GO_WEST] = sAnim_RayquazaCoiledMouthOpen,
-    [ANIM_STD_GO_EAST] = sAnim_RayquazaNormal,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_RayquazaCoiledAsleep,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_RayquazaFlyUp,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_RayquazaCoiledAwake,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_RayquazaNormal,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_RayquazaCoiledAsleep,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_RayquazaFlyUp,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_RayquazaCoiledMouthOpen,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_RayquazaNormal,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_RayquazaCoiledAsleep,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_RayquazaFlyUp,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_RayquazaCoiledMouthOpen,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_RayquazaNormal,
+static const union AnimCmd sAnim_GetOnOffSurfBlobSouthwest[] =
+{
+    ANIMCMD_FRAME(13, 32),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GetOnOffSurfBlobSoutheast[] =
+{
+    ANIMCMD_FRAME(13, 32, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GetOnOffSurfBlobNorthwest[] =
+{
+    ANIMCMD_FRAME(15, 32),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_GetOnOffSurfBlobNortheast[] =
+{
+    ANIMCMD_FRAME(15, 32, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd *const sAnimTable_Surfing[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast3F,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth3F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast3F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast3F,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast3F,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast3F,
+    [ANIM_STD_FACE_SOUTHWEST] = sAnim_Surfing_FaceSouthwest,
+    [ANIM_STD_FACE_SOUTHEAST] = sAnim_Surfing_FaceSoutheast,
+    [ANIM_STD_FACE_NORTHWEST] = sAnim_Surfing_FaceNorthwest,
+    [ANIM_STD_FACE_NORTHEAST] = sAnim_Surfing_FaceNortheast,
+    [ANIM_STD_GO_SOUTHWEST] = sAnim_Surfing_GoSouthwest,
+    [ANIM_STD_GO_SOUTHEAST] = sAnim_Surfing_GoSoutheast,
+    [ANIM_STD_GO_NORTHWEST] = sAnim_Surfing_GoNorthwest,
+    [ANIM_STD_GO_NORTHEAST] = sAnim_Surfing_GoNortheast,
+    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_Surfing_GoFastSouthwest,
+    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_Surfing_GoFastSoutheast,
+    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_Surfing_GoFastNorthwest,
+    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_Surfing_GoFastNortheast,
+    [ANIM_GET_ON_OFF_POKEMON_SOUTH] = sAnim_GetOnOffSurfBlobSouth,
+    [ANIM_GET_ON_OFF_POKEMON_NORTH] = sAnim_GetOnOffSurfBlobNorth,
+    [ANIM_GET_ON_OFF_POKEMON_WEST] = sAnim_GetOnOffSurfBlobWest,
+    [ANIM_GET_ON_OFF_POKEMON_EAST] = sAnim_GetOnOffSurfBlobEast,
+    [ANIM_GET_ON_OFF_POKEMON_SOUTHWEST] = sAnim_GetOnOffSurfBlobSouthwest,
+    [ANIM_GET_ON_OFF_POKEMON_SOUTHEAST] = sAnim_GetOnOffSurfBlobSoutheast,
+    [ANIM_GET_ON_OFF_POKEMON_NORTHWEST] = sAnim_GetOnOffSurfBlobNorthwest,
+    [ANIM_GET_ON_OFF_POKEMON_NORTHEAST] = sAnim_GetOnOffSurfBlobNortheast,
 };
 
 static const union AnimCmd sAnim_OnFoot_FaceSouthwest[] =
@@ -1975,6 +1858,42 @@ static const union AnimCmd sAnim_OnFoot_GoFasterNortheast[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd sAnim_RunSouth[] =
+{
+    ANIMCMD_FRAME(12, 5),
+    ANIMCMD_FRAME( 9, 3),
+    ANIMCMD_FRAME(13, 5),
+    ANIMCMD_FRAME( 9, 3),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_RunNorth[] =
+{
+    ANIMCMD_FRAME(14, 5),
+    ANIMCMD_FRAME(10, 3),
+    ANIMCMD_FRAME(15, 5),
+    ANIMCMD_FRAME(10, 3),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_RunWest[] =
+{
+    ANIMCMD_FRAME(16, 5),
+    ANIMCMD_FRAME(11, 3),
+    ANIMCMD_FRAME(17, 5),
+    ANIMCMD_FRAME(11, 3),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_RunEast[] =
+{
+    ANIMCMD_FRAME(16, 5, .hFlip = TRUE),
+    ANIMCMD_FRAME(11, 3, .hFlip = TRUE),
+    ANIMCMD_FRAME(17, 5, .hFlip = TRUE),
+    ANIMCMD_FRAME(11, 3, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
 static const union AnimCmd sAnim_RunSouthwest[] =
 {
     ANIMCMD_FRAME(26, 5),
@@ -2012,26 +1931,26 @@ static const union AnimCmd sAnim_RunNortheast[] =
 };
 
 static const union AnimCmd *const sAnimTable_BrendanMayNormal[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast,
-    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth,
-    [ANIM_STD_GO_NORTH] = sAnim_GoNorth,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast3F,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth3F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast3F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast3F,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast3F,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast3F,
     [ANIM_STD_FACE_SOUTHWEST] = sAnim_OnFoot_FaceSouthwest,
     [ANIM_STD_FACE_SOUTHEAST] = sAnim_OnFoot_FaceSoutheast,
     [ANIM_STD_FACE_NORTHWEST] = sAnim_OnFoot_FaceNorthwest,
@@ -2154,6 +2073,34 @@ static const union AnimCmd sAnim_AcroBike_GoFastNortheast[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd sAnim_BunnyHopBackWheelSouth[] =
+{
+    ANIMCMD_FRAME( 9, 4),
+    ANIMCMD_FRAME(10, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BunnyHopBackWheelNorth[] =
+{
+    ANIMCMD_FRAME(13, 4),
+    ANIMCMD_FRAME(14, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BunnyHopBackWheelWest[] =
+{
+    ANIMCMD_FRAME(17, 4),
+    ANIMCMD_FRAME(18, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BunnyHopBackWheelEast[] =
+{
+    ANIMCMD_FRAME(17, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(18, 4, .hFlip = TRUE),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd sAnim_BunnyHopBackWheelSouthwest[] =
 {
     ANIMCMD_FRAME(33, 4),
@@ -2179,6 +2126,62 @@ static const union AnimCmd sAnim_BunnyHopBackWheelNortheast[] =
 {
     ANIMCMD_FRAME(35, 4, .hFlip = TRUE),
     ANIMCMD_FRAME(36, 4, .hFlip = TRUE),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BunnyHopFrontWheelSouth[] =
+{
+    ANIMCMD_FRAME(11, 4),
+    ANIMCMD_FRAME(12, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BunnyHopFrontWheelNorth[] =
+{
+    ANIMCMD_FRAME(15, 4),
+    ANIMCMD_FRAME(16, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BunnyHopFrontWheelWest[] =
+{
+    ANIMCMD_FRAME(19, 4),
+    ANIMCMD_FRAME(20, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BunnyHopFrontWheelEast[] =
+{
+    ANIMCMD_FRAME(19, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(20, 4, .hFlip = TRUE),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_StandingWheelieBackWheelSouth[] =
+{
+    ANIMCMD_FRAME(9, 4),
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_StandingWheelieBackWheelNorth[] =
+{
+    ANIMCMD_FRAME(13, 4),
+    ANIMCMD_FRAME( 1, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_StandingWheelieBackWheelWest[] =
+{
+    ANIMCMD_FRAME(17, 4),
+    ANIMCMD_FRAME( 2, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_StandingWheelieBackWheelEast[] =
+{
+    ANIMCMD_FRAME(17, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME( 2, 4, .hFlip = TRUE),
     ANIMCMD_END,
 };
 
@@ -2208,6 +2211,70 @@ static const union AnimCmd sAnim_StandingWheelieBackWheelNortheast[] =
     ANIMCMD_FRAME(35, 4, .hFlip = TRUE),
     ANIMCMD_FRAME(28, 4, .hFlip = TRUE),
     ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_StandingWheelieFrontWheelSouth[] =
+{
+    ANIMCMD_FRAME(11, 4),
+    ANIMCMD_FRAME( 0, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_StandingWheelieFrontWheelNorth[] =
+{
+    ANIMCMD_FRAME(15, 4),
+    ANIMCMD_FRAME( 1, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_StandingWheelieFrontWheelWest[] =
+{
+    ANIMCMD_FRAME(19, 4),
+    ANIMCMD_FRAME( 2, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_StandingWheelieFrontWheelEast[] =
+{
+    ANIMCMD_FRAME(19, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME( 2, 4, .hFlip = TRUE),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_MovingWheelieSouth[] =
+{
+    ANIMCMD_FRAME(21, 4),
+    ANIMCMD_FRAME(10, 4),
+    ANIMCMD_FRAME(22, 4),
+    ANIMCMD_FRAME(10, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_MovingWheelieNorth[] =
+{
+    ANIMCMD_FRAME(23, 4),
+    ANIMCMD_FRAME(14, 4),
+    ANIMCMD_FRAME(24, 4),
+    ANIMCMD_FRAME(14, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_MovingWheelieWest[] =
+{
+    ANIMCMD_FRAME(25, 4),
+    ANIMCMD_FRAME(18, 4),
+    ANIMCMD_FRAME(26, 4),
+    ANIMCMD_FRAME(18, 4),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_MovingWheelieEast[] =
+{
+    ANIMCMD_FRAME(25, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(18, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(26, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(18, 4, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
 };
 
 static const union AnimCmd sAnim_MovingWheelieSouthwest[] =
@@ -2247,26 +2314,26 @@ static const union AnimCmd sAnim_MovingWheelieNortheast[] =
 };
 
 static const union AnimCmd *const sAnimTable_AcroBike[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast,
-    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth,
-    [ANIM_STD_GO_NORTH] = sAnim_GoNorth,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast3F,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth3F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast3F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast3F,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast3F,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast3F,
     [ANIM_STD_FACE_SOUTHWEST] = sAnim_AcroBike_FaceSouthwest,
     [ANIM_STD_FACE_SOUTHEAST] = sAnim_AcroBike_FaceSoutheast,
     [ANIM_STD_FACE_NORTHWEST] = sAnim_AcroBike_FaceNorthwest,
@@ -2313,215 +2380,40 @@ static const union AnimCmd *const sAnimTable_AcroBike[] = {
     [ANIM_MOVING_WHEELIE_NORTHEAST] = sAnim_MovingWheelieNortheast,
 };
 
-static const union AnimCmd sAnim_Surfing_FaceSouthwest[] =
+static const union AnimCmd sAnim_TakeOutRodSouth[] =
 {
-    ANIMCMD_FRAME(12, 16),
-    ANIMCMD_JUMP(0),
+    ANIMCMD_FRAME( 8, 4),
+    ANIMCMD_FRAME( 9, 4),
+    ANIMCMD_FRAME(10, 4),
+    ANIMCMD_FRAME(11, 4),
+    ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Surfing_FaceSoutheast[] =
+static const union AnimCmd sAnim_TakeOutRodNorth[] =
 {
-    ANIMCMD_FRAME(12, 16, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
+    ANIMCMD_FRAME(4, 4),
+    ANIMCMD_FRAME(5, 4),
+    ANIMCMD_FRAME(6, 4),
+    ANIMCMD_FRAME(7, 4),
+    ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Surfing_FaceNorthwest[] =
+static const union AnimCmd sAnim_TakeOutRodWest[] =
 {
-    ANIMCMD_FRAME(14, 16),
-    ANIMCMD_JUMP(0),
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(2, 4),
+    ANIMCMD_FRAME(3, 4),
+    ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Surfing_FaceNortheast[] =
+static const union AnimCmd sAnim_TakeOutRodEast[] =
 {
-    ANIMCMD_FRAME(14, 16, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Surfing_GoSouthwest[] =
-{
-    ANIMCMD_FRAME(12, 8),
-    ANIMCMD_FRAME(12, 8),
-    ANIMCMD_FRAME(12, 8),
-    ANIMCMD_FRAME(12, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Surfing_GoSoutheast[] =
-{
-    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 8, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Surfing_GoNorthwest[] =
-{
-    ANIMCMD_FRAME(14, 8),
-    ANIMCMD_FRAME(14, 8),
-    ANIMCMD_FRAME(14, 8),
-    ANIMCMD_FRAME(14, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Surfing_GoNortheast[] =
-{
-    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 8, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Surfing_GoFastSouthwest[] =
-{
-    ANIMCMD_FRAME(12, 4),
-    ANIMCMD_FRAME(12, 4),
-    ANIMCMD_FRAME(12, 4),
-    ANIMCMD_FRAME(12, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Surfing_GoFastSoutheast[] =
-{
-    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(12, 4, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Surfing_GoFastNorthwest[] =
-{
-    ANIMCMD_FRAME(14, 4),
-    ANIMCMD_FRAME(14, 4),
-    ANIMCMD_FRAME(14, 4),
-    ANIMCMD_FRAME(14, 4),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_Surfing_GoFastNortheast[] =
-{
-    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
-    ANIMCMD_FRAME(14, 4, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GetOnOffSurfBlobSouthwest[] =
-{
-    ANIMCMD_FRAME(13, 32),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GetOnOffSurfBlobSoutheast[] =
-{
-    ANIMCMD_FRAME(13, 32, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GetOnOffSurfBlobNorthwest[] =
-{
-    ANIMCMD_FRAME(15, 32),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_GetOnOffSurfBlobNortheast[] =
-{
-    ANIMCMD_FRAME(15, 32, .hFlip = TRUE),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd *const sAnimTable_Surfing[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast,
-    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth,
-    [ANIM_STD_GO_NORTH] = sAnim_GoNorth,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth,
-    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest,
-    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
-    [ANIM_STD_FACE_SOUTHWEST] = sAnim_Surfing_FaceSouthwest,
-    [ANIM_STD_FACE_SOUTHEAST] = sAnim_Surfing_FaceSoutheast,
-    [ANIM_STD_FACE_NORTHWEST] = sAnim_Surfing_FaceNorthwest,
-    [ANIM_STD_FACE_NORTHEAST] = sAnim_Surfing_FaceNortheast,
-    [ANIM_STD_GO_SOUTHWEST] = sAnim_Surfing_GoSouthwest,
-    [ANIM_STD_GO_SOUTHEAST] = sAnim_Surfing_GoSoutheast,
-    [ANIM_STD_GO_NORTHWEST] = sAnim_Surfing_GoNorthwest,
-    [ANIM_STD_GO_NORTHEAST] = sAnim_Surfing_GoNortheast,
-    [ANIM_STD_GO_FAST_SOUTHWEST] = sAnim_Surfing_GoFastSouthwest,
-    [ANIM_STD_GO_FAST_SOUTHEAST] = sAnim_Surfing_GoFastSoutheast,
-    [ANIM_STD_GO_FAST_NORTHWEST] = sAnim_Surfing_GoFastNorthwest,
-    [ANIM_STD_GO_FAST_NORTHEAST] = sAnim_Surfing_GoFastNortheast,
-    [ANIM_GET_ON_OFF_POKEMON_SOUTH] = sAnim_GetOnOffSurfBlobSouth,
-    [ANIM_GET_ON_OFF_POKEMON_NORTH] = sAnim_GetOnOffSurfBlobNorth,
-    [ANIM_GET_ON_OFF_POKEMON_WEST] = sAnim_GetOnOffSurfBlobWest,
-    [ANIM_GET_ON_OFF_POKEMON_EAST] = sAnim_GetOnOffSurfBlobEast,
-    [ANIM_GET_ON_OFF_POKEMON_SOUTHWEST] = sAnim_GetOnOffSurfBlobSouthwest,
-    [ANIM_GET_ON_OFF_POKEMON_SOUTHEAST] = sAnim_GetOnOffSurfBlobSoutheast,
-    [ANIM_GET_ON_OFF_POKEMON_NORTHWEST] = sAnim_GetOnOffSurfBlobNorthwest,
-    [ANIM_GET_ON_OFF_POKEMON_NORTHEAST] = sAnim_GetOnOffSurfBlobNortheast,
-};
-
-static const union AnimCmd *const sAnimTable_Nurse[] = {
-    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
-    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
-    [ANIM_STD_FACE_WEST] = sAnim_FaceWest,
-    [ANIM_STD_FACE_EAST] = sAnim_FaceEast,
-    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth,
-    [ANIM_STD_GO_NORTH] = sAnim_GoNorth,
-    [ANIM_STD_GO_WEST] = sAnim_GoWest,
-    [ANIM_STD_GO_EAST] = sAnim_GoEast,
-    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth,
-    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth,
-    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest,
-    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast,
-    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth,
-    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth,
-    [ANIM_STD_GO_FASTER_WEST]  = sAnim_GoFasterWest,
-    [ANIM_STD_GO_FASTER_EAST]  = sAnim_GoFasterEast,
-    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth,
-    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth,
-    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest,
-    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
-    [ANIM_NURSE_BOW] = sAnim_NurseBow,
-};
-
-static const union AnimCmd *const sAnimTable_FieldMove[] = {
-    [ANIM_FIELD_MOVE] = sAnim_FieldMove,
-};
-
-static const union AnimCmd *const sAnimTable_BerryTree[] = {
-    [BERRY_STAGE_PLANTED - 1] = sAnim_BerryTreeStage0,
-    [BERRY_STAGE_SPROUTED - 1] = sAnim_BerryTreeStage1,
-    [BERRY_STAGE_TALLER - 1] = sAnim_BerryTreeStage2,
-    [BERRY_STAGE_TRUNK - 1] = sAnim_BerryTreeStage2,
-    [BERRY_STAGE_BUDDING - 1] = sAnim_BerryTreeStage2,
-    [BERRY_STAGE_FLOWERING - 1] = sAnim_BerryTreeStage3,
-    [BERRY_STAGE_BERRIES - 1] = sAnim_BerryTreeStage4,
-};
-
-static const union AnimCmd *const sAnimTable_BreakableRock[] = {
-    [ANIM_STAY_STILL] = sAnim_StayStill,
-    [ANIM_REMOVE_OBSTACLE] = sAnim_RockBreak,
-};
-
-static const union AnimCmd *const sAnimTable_CuttableTree[] = {
-    [ANIM_STAY_STILL] = sAnim_StayStill,
-    [ANIM_REMOVE_OBSTACLE] = sAnim_TreeCut,
+    ANIMCMD_FRAME(0, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(1, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(2, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(3, 4, .hFlip = TRUE),
+    ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_TakeOutRodSouthwest[] =
@@ -2557,6 +2449,42 @@ static const union AnimCmd sAnim_TakeOutRodNortheast[] =
     ANIMCMD_FRAME(17, 4, .hFlip = TRUE),
     ANIMCMD_FRAME(18, 4, .hFlip = TRUE),
     ANIMCMD_FRAME(19, 4, .hFlip = TRUE),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_PutAwayRodSouth[] =
+{
+    ANIMCMD_FRAME(11, 4),
+    ANIMCMD_FRAME(10, 6),
+    ANIMCMD_FRAME( 9, 6),
+    ANIMCMD_FRAME( 8, 6),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_PutAwayRodNorth[] =
+{
+    ANIMCMD_FRAME(7, 4),
+    ANIMCMD_FRAME(6, 6),
+    ANIMCMD_FRAME(5, 6),
+    ANIMCMD_FRAME(4, 6),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_PutAwayRodWest[] =
+{
+    ANIMCMD_FRAME(3, 4),
+    ANIMCMD_FRAME(2, 4),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_PutAwayRodEast[] =
+{
+    ANIMCMD_FRAME(3, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(2, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(1, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(0, 4, .hFlip = TRUE),
     ANIMCMD_END,
 };
 
@@ -2596,10 +2524,46 @@ static const union AnimCmd sAnim_PutAwayRodNortheast[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_HookedPokemonSouth[] =
+{
+    ANIMCMD_FRAME(10,  6),
+    ANIMCMD_FRAME(11,  6),
+    ANIMCMD_LOOP(1),
+    ANIMCMD_FRAME(11, 30),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_HookedPokemonNorth[] =
+{
+    ANIMCMD_FRAME(6,  6),
+    ANIMCMD_FRAME(7,  6),
+    ANIMCMD_LOOP(1),
+    ANIMCMD_FRAME(7, 30),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_HookedPokemonWest[] =
+{
+    ANIMCMD_FRAME(2,  6),
+    ANIMCMD_FRAME(3,  6),
+    ANIMCMD_LOOP(1),
+    ANIMCMD_FRAME(3, 30),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_HookedPokemonEast[] =
+{
+    ANIMCMD_FRAME(2,  6, .hFlip = TRUE),
+    ANIMCMD_FRAME(3,  6, .hFlip = TRUE),
+    ANIMCMD_LOOP(1),
+    ANIMCMD_FRAME(3, 30, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
 static const union AnimCmd sAnim_HookedPokemonSouthwest[] =
 {
-    ANIMCMD_FRAME(14, 6),
-    ANIMCMD_FRAME(15, 6),
+    ANIMCMD_FRAME(14,  6),
+    ANIMCMD_FRAME(15,  6),
     ANIMCMD_LOOP(1),
     ANIMCMD_FRAME(15, 30),
     ANIMCMD_JUMP(0),
@@ -2607,8 +2571,8 @@ static const union AnimCmd sAnim_HookedPokemonSouthwest[] =
 
 static const union AnimCmd sAnim_HookedPokemonSoutheast[] =
 {
-    ANIMCMD_FRAME(14, 6, .hFlip = TRUE),
-    ANIMCMD_FRAME(15, 6, .hFlip = TRUE),
+    ANIMCMD_FRAME(14,  6, .hFlip = TRUE),
+    ANIMCMD_FRAME(15,  6, .hFlip = TRUE),
     ANIMCMD_LOOP(1),
     ANIMCMD_FRAME(15, 30, .hFlip = TRUE),
     ANIMCMD_JUMP(0),
@@ -2616,8 +2580,8 @@ static const union AnimCmd sAnim_HookedPokemonSoutheast[] =
 
 static const union AnimCmd sAnim_HookedPokemonNorthwest[] =
 {
-    ANIMCMD_FRAME(18, 6),
-    ANIMCMD_FRAME(19, 6),
+    ANIMCMD_FRAME(18,  6),
+    ANIMCMD_FRAME(19,  6),
     ANIMCMD_LOOP(1),
     ANIMCMD_FRAME(19, 30),
     ANIMCMD_JUMP(0),
@@ -2625,8 +2589,8 @@ static const union AnimCmd sAnim_HookedPokemonNorthwest[] =
 
 static const union AnimCmd sAnim_HookedPokemonNortheast[] =
 {
-    ANIMCMD_FRAME(18, 6, .hFlip = TRUE),
-    ANIMCMD_FRAME(19, 6, .hFlip = TRUE),
+    ANIMCMD_FRAME(18,  6, .hFlip = TRUE),
+    ANIMCMD_FRAME(19,  6, .hFlip = TRUE),
     ANIMCMD_LOOP(1),
     ANIMCMD_FRAME(19, 30, .hFlip = TRUE),
     ANIMCMD_JUMP(0),
@@ -2659,6 +2623,280 @@ static const union AnimCmd *const sAnimTable_Fishing[] = {
     [ANIM_HOOKED_POKEMON_NORTHEAST] = sAnim_HookedPokemonNortheast,
 };
 
+static const union AnimCmd sAnim_NurseBow[] =
+{
+    ANIMCMD_FRAME(0,  8),
+    ANIMCMD_FRAME(9, 32),
+    ANIMCMD_FRAME(0,  8),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sAnimTable_Nurse[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast3F,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth3F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast3F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast3F,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_WEST]  = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_EAST]  = sAnim_GoFasterEast3F,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast3F,
+    [ANIM_NURSE_BOW] = sAnim_NurseBow,
+};
+
+static const union AnimCmd sAnim_BerryTreeStage0[] =
+{
+    ANIMCMD_FRAME(0, 32),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BerryTreeStage1[] =
+{
+    ANIMCMD_FRAME(1, 32),
+    ANIMCMD_FRAME(2, 32),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BerryTreeStage2[] =
+{
+    ANIMCMD_FRAME(3, 48),
+    ANIMCMD_FRAME(4, 48),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BerryTreeStage3[] =
+{
+    ANIMCMD_FRAME(5, 32),
+    ANIMCMD_FRAME(5, 32),
+    ANIMCMD_FRAME(6, 32),
+    ANIMCMD_FRAME(6, 32),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BerryTreeStage4[] =
+{
+    ANIMCMD_FRAME(7, 48),
+    ANIMCMD_FRAME(7, 48),
+    ANIMCMD_FRAME(8, 48),
+    ANIMCMD_FRAME(8, 48),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sAnimTable_BerryTree[] = {
+    [BERRY_STAGE_PLANTED - 1] = sAnim_BerryTreeStage0,
+    [BERRY_STAGE_SPROUTED - 1] = sAnim_BerryTreeStage1,
+    [BERRY_STAGE_TALLER - 1] = sAnim_BerryTreeStage2,
+    [BERRY_STAGE_TRUNK - 1] = sAnim_BerryTreeStage2,
+    [BERRY_STAGE_BUDDING - 1] = sAnim_BerryTreeStage2,
+    [BERRY_STAGE_FLOWERING - 1] = sAnim_BerryTreeStage3,
+    [BERRY_STAGE_BERRIES - 1] = sAnim_BerryTreeStage4,
+};
+
+static const union AffineAnimCmd sAffineAnim_KyogreGroudon_GoSouthStart[] =
+{
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 1, 1),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
+    AFFINEANIMCMD_LOOP(7),
+    AFFINEANIMCMD_JUMP(0),
+};
+
+static const union AffineAnimCmd sAffineAnim_KyogreGroudon_GoSouth[] =
+{
+    AFFINEANIMCMD_FRAME(0x0, 0x0, -1, 1),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
+    AFFINEANIMCMD_LOOP(15),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 1, 1),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
+    AFFINEANIMCMD_LOOP(15),
+    AFFINEANIMCMD_JUMP(0),
+};
+
+static const union AffineAnimCmd sAffineAnim_KyogreGroudon_AttackEast[] =
+{
+    AFFINEANIMCMD_FRAME(0x100, 0x100, 10, 0),
+    AFFINEANIMCMD_END,
+};
+
+static const union AffineAnimCmd sAffineAnim_KyogreGroudon_AttackWest[] =
+{
+    AFFINEANIMCMD_FRAME(0x100, 0x100, 10, 0),
+    AFFINEANIMCMD_END,
+};
+
+static const union AffineAnimCmd sAffineAnim_KyogreGroudon_DipEast[] =
+{
+    AFFINEANIMCMD_FRAME(0x0, 0x0, -1, 1),
+    AFFINEANIMCMD_LOOP(8),
+    AFFINEANIMCMD_END,
+};
+
+static const union AffineAnimCmd sAffineAnim_KyogreGroudon_DipWest[] =
+{
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 1, 1),
+    AFFINEANIMCMD_LOOP(8),
+    AFFINEANIMCMD_END,
+};
+
+// The movements for going up use the animations for going right instead.
+static const union AnimCmd *const sAnimTable_GroudonSide[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast3F,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth3F,
+    [ANIM_STD_GO_NORTH] = sAnim_GoEast3F,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast3F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastEast3F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast3F,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterEast3F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast3F,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestEast3F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast3F,
+};
+
+static const union AnimCmd sAnim_HoOhFlapWings[] =
+{
+    ANIMCMD_FRAME(3, 8),
+    ANIMCMD_FRAME(4, 8),
+    ANIMCMD_FRAME(3, 8),
+    ANIMCMD_FRAME(4, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_HoOhStayStill[] =
+{
+    ANIMCMD_FRAME(3, 16),
+    ANIMCMD_JUMP(0),
+};
+
+
+static const union AnimCmd *const sAnimTable_HoOh[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth3F,
+    [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth3F,
+    [ANIM_STD_FACE_WEST] = sAnim_FaceWest3F,
+    [ANIM_STD_FACE_EAST] = sAnim_FaceEast3F,
+    [ANIM_STD_GO_SOUTH] = sAnim_HoOhFlapWings,
+    [ANIM_STD_GO_NORTH] = sAnim_HoOhStayStill,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest3F,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast3F,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth3F,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth3F,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest3F,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast3F,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth3F,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth3F,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest3F,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast3F,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth3F,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth3F,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest3F,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast3F,
+};
+
+static const union AnimCmd sAnim_RayquazaCoiledAwake[] =
+{
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_RayquazaFlyUp[] =
+{
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_RayquazaCoiledAsleep[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_RayquazaCoiledMouthOpen[] =
+{
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_RayquazaNormal[] =
+{
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_JUMP(0),
+};
+
+// Identical to sAnim_RayquazaCoiledAsleep
+static const union AnimCmd sAnim_RayquazaFaceSouth[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
+// Identical to sAnim_RayquazaCoiledAsleep
+static const union AnimCmd sAnim_RayquazaFaceNorth[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
+// Identical to sAnim_RayquazaCoiledAsleep
+static const union AnimCmd sAnim_RayquazaFaceWest[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
+// Identical to sAnim_RayquazaNormal
+static const union AnimCmd sAnim_RayquazaFaceEast[] =
+{
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_JUMP(0),
+};
+
+// Though they correspond to facing/walking movements, Rayquaza doesn't have
+// equivalent images aside from flying up. Its other frames aside from the 'normal'
+// frame are for the sequence where it awakens on Sky Pillar.
+static const union AnimCmd *const sAnimTable_Rayquaza[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_RayquazaFaceSouth,
+    [ANIM_STD_FACE_NORTH] = sAnim_RayquazaFaceNorth,
+    [ANIM_STD_FACE_WEST] = sAnim_RayquazaFaceWest,
+    [ANIM_STD_FACE_EAST] = sAnim_RayquazaFaceEast,
+    [ANIM_STD_GO_SOUTH] = sAnim_RayquazaCoiledAsleep,
+    [ANIM_STD_GO_NORTH] = sAnim_RayquazaFlyUp,
+    [ANIM_STD_GO_WEST] = sAnim_RayquazaCoiledMouthOpen,
+    [ANIM_STD_GO_EAST] = sAnim_RayquazaNormal,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_RayquazaCoiledAsleep,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_RayquazaFlyUp,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_RayquazaCoiledAwake,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_RayquazaNormal,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_RayquazaCoiledAsleep,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_RayquazaFlyUp,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_RayquazaCoiledMouthOpen,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_RayquazaNormal,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_RayquazaCoiledAsleep,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_RayquazaFlyUp,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_RayquazaCoiledMouthOpen,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_RayquazaNormal,
+};
+
 static const union AffineAnimCmd *const sAffineAnimTable_KyogreGroudon[] = {
     sAffineAnim_KyogreGroudon_GoSouthStart, // Used by Kyogre/Groudon when awakened
     sAffineAnim_KyogreGroudon_GoSouth,      // Used by Kyogre/Groudon when awakened
@@ -2675,19 +2913,35 @@ static const struct StepAnimTable sStepAnimTables[] = {
         .animPos = {1, 3, 0, 2},
     },
     {
-        .anims = sAnimTable_Standard,
+        .anims = sAnimTable_Walk3F,
         .animPos = {1, 3, 0, 2},
     },
     {
-        .anims = sAnimTable_Standard_Diagonal,
+        .anims = sAnimTable_Walk3F_Diagonal,
         .animPos = {1, 3, 0, 2},
     },
     {
-        .anims = sAnimTable_Following,
+        .anims = sAnimTable_Walk3F_Asym,
         .animPos = {1, 3, 0, 2},
     },
     {
-        .anims = sAnimTable_Following_Diagonal,
+        .anims = sAnimTable_Walk3F_Diagonal_Asym,
+        .animPos = {1, 3, 0, 2},
+    },
+    {
+        .anims = sAnimTable_Walk2F,
+        .animPos = {1, 3, 0, 2},
+    },
+    {
+        .anims = sAnimTable_Walk2F_Diagonal,
+        .animPos = {1, 3, 0, 2},
+    },
+    {
+        .anims = sAnimTable_Walk2F_Asym,
+        .animPos = {1, 3, 0, 2},
+    },
+    {
+        .anims = sAnimTable_Walk2F_Diagonal_Asym,
         .animPos = {1, 3, 0, 2},
     },
     {

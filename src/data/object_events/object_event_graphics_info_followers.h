@@ -11,7 +11,7 @@
         .inanimate = TRUE,                                          \
         .oam = &gObjectEventBaseOam_16x32,                          \
         .subspriteTables = sOamTables_16x32,                        \
-        .anims = sAnimTable_Following,                              \
+        .anims = sAnimTable_Pokeball,                               \
         .images = sPicTable_Ball_##NAME,                            \
         .affineAnims = gDummySpriteAffineAnimTable,                 \
     }

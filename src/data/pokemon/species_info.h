@@ -16,6 +16,17 @@
 
 // Set .compressed = OW_GFX_COMPRESS
 #define COMP OW_GFX_COMPRESS
+// wrap PRET default
+#define OVERWORLD(picTable, _size, shadow, tracks, ...) OVERWORLD_2F(picTable, _size, shadow, tracks, __VA_ARGS__)
+
+#define OVERWORLD_3F(picTable, _size, shadow, tracks, ...)           _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk3F,               __VA_ARGS__)
+#define OVERWORLD_3F_DIAG(picTable, _size, shadow, tracks, ...)      _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk3F_Diagonal,      __VA_ARGS__)
+#define OVERWORLD_3F_ASYM(picTable, _size, shadow, tracks, ...)      _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk3F_Asym,          __VA_ARGS__)
+#define OVERWORLD_3F_DIAG_ASYM(picTable, _size, shadow, tracks, ...) _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk3F_Diagonal_Asym, __VA_ARGS__)
+#define OVERWORLD_2F(picTable, _size, shadow, tracks, ...)           _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk2F,               __VA_ARGS__)
+#define OVERWORLD_2F_DIAG(picTable, _size, shadow, tracks, ...)      _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk2F_Diagonal,      __VA_ARGS__)
+#define OVERWORLD_2F_ASYM(picTable, _size, shadow, tracks, ...)      _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk2F_Asym,          __VA_ARGS__)
+#define OVERWORLD_2F_DIAG_ASYM(picTable, _size, shadow, tracks, ...) _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk2F_Diagonal_Asym, __VA_ARGS__)
 
 #if OW_POKEMON_OBJECT_EVENTS
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
@@ -26,7 +37,7 @@
 #define OVERWORLD_PAL(...)
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
 
-#define OVERWORLD(picTable, _size, shadow, _tracks, ...)                                    \
+#define _OVERWORLD(picTable, _size, _shadow, _tracks, _anims, ...)                          \
 .overworldData = {                                                                          \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
@@ -35,19 +46,19 @@
     .width = (_size == SIZE_32x32 ? 32 : 64),                                               \
     .height = (_size == SIZE_32x32 ? 32 : 64),                                              \
     .paletteSlot = PALSLOT_NPC_1,                                                           \
-    .shadowSize = shadow,                                                                   \
+    .shadowSize = _shadow,                                                                  \
     .inanimate = FALSE,                                                                     \
     .compressed = COMP,                                                                     \
     .tracks = _tracks,                                                                      \
     .oam = (_size == SIZE_32x32 ? &gObjectEventBaseOam_32x32 : &gObjectEventBaseOam_64x64), \
     .subspriteTables = (_size == SIZE_32x32 ? sOamTables_32x32 : sOamTables_64x64),         \
-    .anims = sAnimTable_Following,                                                          \
+    .anims = _anims,                                                                        \
     .images = picTable,                                                                     \
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
 },                                                                                          \
     OVERWORLD_PAL(__VA_ARGS__)
 #else
-#define OVERWORLD(picTable, _size, shadow, _tracks, ...)
+#define _OVERWORLD(picTable, _size, shadow, tracks, ...)
 #endif //OW_POKEMON_OBJECT_EVENTS
 
 // Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.
@@ -110,7 +121,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             .tracks = TRACKS_FOOT,
             .oam = &gObjectEventBaseOam_32x32,
             .subspriteTables = sOamTables_32x32,
-            .anims = sAnimTable_Following_Diagonal,
+            .anims = sAnimTable_Walk2F_Diagonal,
             .images = sPicTable_Substitute,
             .affineAnims = gDummySpriteAffineAnimTable,
         },
