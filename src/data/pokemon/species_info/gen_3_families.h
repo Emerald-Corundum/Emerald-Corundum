@@ -53,26 +53,15 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .iconPalIndex = 1,
         FOOTPRINT(Treecko)
 #if OW_TREECKO_DIAGONAL_MOVEMENT == TRUE
-        .overworldData = {
-            .tileTag = TAG_NONE,
-            .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,
-            .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
-            .size = 512,
-            .width = 32,
-            .height = 32,
-            .paletteSlot = PALSLOT_NPC_1,
-            .shadowSize = SHADOW_SIZE_M,
-            .inanimate = FALSE,
-            .compressed = COMP,
-            .tracks = TRACKS_FOOT,
-            .oam = &gObjectEventBaseOam_32x32,
-            .subspriteTables = sOamTables_32x32,
-            .anims = sAnimTable_Walk3F_Diagonal,
-            .images = sPicTable_Treecko_Diagonal,
-            .affineAnims = gDummySpriteAffineAnimTable,
-        },
-        .overworldPalette = gOverworldPalette_Treecko_Diagonal,
-        .overworldShinyPalette = gShinyOverworldPalette_Treecko_Diagonal,
+        OVERWORLD_ANIM(
+            sPicTable_Treecko_Diagonal,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Walk3F_Diagonal,
+            gOverworldPalette_Treecko_Diagonal,
+            gShinyOverworldPalette_Treecko_Diagonal
+        )
 #else
         OVERWORLD(
             sPicTable_Treecko,

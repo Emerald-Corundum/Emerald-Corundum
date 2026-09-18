@@ -16,17 +16,6 @@
 
 // Set .compressed = OW_GFX_COMPRESS
 #define COMP OW_GFX_COMPRESS
-// wrap PRET default
-#define OVERWORLD(picTable, _size, shadow, tracks, ...) OVERWORLD_2F(picTable, _size, shadow, tracks, __VA_ARGS__)
-
-#define OVERWORLD_3F(picTable, _size, shadow, tracks, ...)           _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk3F,               __VA_ARGS__)
-#define OVERWORLD_3F_DIAG(picTable, _size, shadow, tracks, ...)      _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk3F_Diagonal,      __VA_ARGS__)
-#define OVERWORLD_3F_ASYM(picTable, _size, shadow, tracks, ...)      _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk3F_Asym,          __VA_ARGS__)
-#define OVERWORLD_3F_DIAG_ASYM(picTable, _size, shadow, tracks, ...) _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk3F_Diagonal_Asym, __VA_ARGS__)
-#define OVERWORLD_2F(picTable, _size, shadow, tracks, ...)           _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk2F,               __VA_ARGS__)
-#define OVERWORLD_2F_DIAG(picTable, _size, shadow, tracks, ...)      _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk2F_Diagonal,      __VA_ARGS__)
-#define OVERWORLD_2F_ASYM(picTable, _size, shadow, tracks, ...)      _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk2F_Asym,          __VA_ARGS__)
-#define OVERWORLD_2F_DIAG_ASYM(picTable, _size, shadow, tracks, ...) _OVERWORLD(picTable, _size, shadow, tracks, sAnimTable_Walk2F_Diagonal_Asym, __VA_ARGS__)
 
 #if OW_POKEMON_OBJECT_EVENTS
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
@@ -37,7 +26,8 @@
 #define OVERWORLD_PAL(...)
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
 
-#define _OVERWORLD(picTable, _size, _shadow, _tracks, _anims, ...)                          \
+#define OVERWORLD(_picTable, _size, _shadow, _tracks, ...) OVERWORLD_ANIM(_picTable, _size, _shadow, _tracks, sAnimTable_Walk2F, __VA_ARGS__)
+#define OVERWORLD_ANIM(_picTable, _size, _shadow, _tracks, _anims, ...)                     \
 .overworldData = {                                                                          \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
@@ -53,12 +43,13 @@
     .oam = (_size == SIZE_32x32 ? &gObjectEventBaseOam_32x32 : &gObjectEventBaseOam_64x64), \
     .subspriteTables = (_size == SIZE_32x32 ? sOamTables_32x32 : sOamTables_64x64),         \
     .anims = _anims,                                                                        \
-    .images = picTable,                                                                     \
+    .images = _picTable,                                                                    \
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
 },                                                                                          \
     OVERWORLD_PAL(__VA_ARGS__)
 #else
-#define _OVERWORLD(picTable, _size, shadow, tracks, ...)
+#define OVERWORLD(_picTable, _size, _shadow, _tracks, ...)
+#define OVERWORLD_ANIM(_picTable, _size, _shadow, _tracks, _anims, ...)
 #endif //OW_POKEMON_OBJECT_EVENTS
 
 // Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.

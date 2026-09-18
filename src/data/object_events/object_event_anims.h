@@ -1307,7 +1307,7 @@ const union AnimCmd *const sAnimTable_Walk2F_Diagonal_Asym[] = {
     [ANIM_STD_GO_FASTEST_NORTHEAST] = sAnim_GoFastestNortheast2F_Asym,
 };
 
-static const union AnimCmd sAnim_EnterSouth[] =
+static const union AnimCmd sAnim_EnterPokeballSouth[] =
 {
     ANIMCMD_FRAME(0, 8),
     ANIMCMD_FRAME(4, 1),
@@ -1319,7 +1319,19 @@ static const union AnimCmd sAnim_EnterSouth[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_EnterNorth[] =
+static const union AnimCmd sAnim_EnterPokeballFastSouth[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_EnterPokeballNorth[] =
 {
     ANIMCMD_FRAME(2, 8),
     ANIMCMD_FRAME(4, 1),
@@ -1331,7 +1343,19 @@ static const union AnimCmd sAnim_EnterNorth[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_EnterWest[] =
+static const union AnimCmd sAnim_EnterPokeballFastNorth[] =
+{
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_EnterPokeballWest[] =
 {
     ANIMCMD_FRAME(4, 8),
     ANIMCMD_FRAME(4, 1),
@@ -1343,7 +1367,19 @@ static const union AnimCmd sAnim_EnterWest[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_EnterEast[] =
+static const union AnimCmd sAnim_EnterPokeballFastWest[] =
+{
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_EnterPokeballEast[] =
 {
     ANIMCMD_FRAME(4, 8, .hFlip = TRUE),
     ANIMCMD_FRAME(4, 1),
@@ -1355,7 +1391,19 @@ static const union AnimCmd sAnim_EnterEast[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd sAnim_EnterEast_Asym[] =
+static const union AnimCmd sAnim_EnterPokeballFastEast[] =
+{
+    ANIMCMD_FRAME(4, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_EnterPokeballEast_Asym[] =
 {
     ANIMCMD_FRAME(6, 8),
     ANIMCMD_FRAME(4, 1),
@@ -1364,6 +1412,18 @@ static const union AnimCmd sAnim_EnterEast_Asym[] =
     ANIMCMD_FRAME(1, 1),
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_FRAME(0, 3),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_EnterPokeballFastEast_Asym[] =
+{
+    ANIMCMD_FRAME(6, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_JUMP(0),
 };
 
@@ -1380,6 +1440,18 @@ static const union AnimCmd sAnim_ExitPokeballSouth[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd sAnim_ExitPokeballFastSouth[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_JUMP(0),
+};
+
 static const union AnimCmd sAnim_ExitPokeballNorth[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -1390,6 +1462,18 @@ static const union AnimCmd sAnim_ExitPokeballNorth[] =
     ANIMCMD_FRAME(3, 1),
     ANIMCMD_FRAME(4, 1),
     ANIMCMD_FRAME(2, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_ExitPokeballFastNorth[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_FRAME(2, 1),
     ANIMCMD_JUMP(0),
 };
 
@@ -1406,6 +1490,18 @@ static const union AnimCmd sAnim_ExitPokeballWest[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd sAnim_ExitPokeballFastWest[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(4, 2),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_JUMP(0),
+};
+
 static const union AnimCmd sAnim_ExitPokeballEast[] =
 {
     ANIMCMD_FRAME(0, 1, .hFlip = TRUE),
@@ -1419,6 +1515,18 @@ static const union AnimCmd sAnim_ExitPokeballEast[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd sAnim_ExitPokeballFastEast[] =
+{
+    ANIMCMD_FRAME(0, 1, .hFlip = TRUE),
+    ANIMCMD_FRAME(1, 1),
+    ANIMCMD_FRAME(2, 1),
+    ANIMCMD_FRAME(3, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(4, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(4, 1, .hFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
 static const union AnimCmd sAnim_ExitPokeballEast_Asym[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -1429,54 +1537,6 @@ static const union AnimCmd sAnim_ExitPokeballEast_Asym[] =
     ANIMCMD_FRAME(3, 1),
     ANIMCMD_FRAME(4, 1),
     ANIMCMD_FRAME(6, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_ExitPokeballFastSouth[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_ExitPokeballFastNorth[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_FRAME(2, 2),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_ExitPokeballFastWest[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_FRAME(4, 2),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_ExitPokeballFastEast[] =
-{
-    ANIMCMD_FRAME(0, 1, .hFlip = TRUE),
-    ANIMCMD_FRAME(1, 1),
-    ANIMCMD_FRAME(2, 1),
-    ANIMCMD_FRAME(3, 1),
-    ANIMCMD_FRAME(4, 1),
-    ANIMCMD_FRAME(4, 2, .hFlip = TRUE),
-    ANIMCMD_FRAME(4, 1, .hFlip = TRUE),
     ANIMCMD_JUMP(0),
 };
 
@@ -1494,7 +1554,42 @@ static const union AnimCmd sAnim_ExitPokeballFastEast_Asym[] =
 
 static const union AnimCmd* const sAnimTable_Pokeball[] =
 {
+    [ANIM_ENTER_POKEBALL_SOUTH] = sAnim_EnterPokeballSouth,
+    [ANIM_ENTER_POKEBALL_NORTH] = sAnim_EnterPokeballNorth,
+    [ANIM_ENTER_POKEBALL_WEST] = sAnim_EnterPokeballWest,
+    [ANIM_ENTER_POKEBALL_EAST] = sAnim_EnterPokeballEast,
+    [ANIM_ENTER_POKEBALL_FAST_SOUTH] = sAnim_EnterPokeballFastSouth,
+    [ANIM_ENTER_POKEBALL_FAST_NORTH] = sAnim_EnterPokeballFastNorth,
+    [ANIM_ENTER_POKEBALL_FAST_WEST] = sAnim_EnterPokeballFastWest,
+    [ANIM_ENTER_POKEBALL_FAST_EAST] = sAnim_EnterPokeballFastEast,
+    [ANIM_EXIT_POKEBALL_SOUTH] = sAnim_ExitPokeballSouth,
+    [ANIM_EXIT_POKEBALL_NORTH] = sAnim_ExitPokeballNorth,
+    [ANIM_EXIT_POKEBALL_WEST] = sAnim_ExitPokeballWest,
+    [ANIM_EXIT_POKEBALL_EAST] = sAnim_ExitPokeballEast,
+    [ANIM_EXIT_POKEBALL_FAST_SOUTH] = sAnim_ExitPokeballFastSouth,
+    [ANIM_EXIT_POKEBALL_FAST_NORTH] = sAnim_ExitPokeballFastNorth,
+    [ANIM_EXIT_POKEBALL_FAST_WEST] = sAnim_ExitPokeballFastWest,
+    [ANIM_EXIT_POKEBALL_FAST_EAST] = sAnim_ExitPokeballFastEast,
+};
 
+static const union AnimCmd* const sAnimTable_Pokeball_Asym[] =
+{
+    [ANIM_ENTER_POKEBALL_SOUTH] = sAnim_EnterPokeballSouth,
+    [ANIM_ENTER_POKEBALL_NORTH] = sAnim_EnterPokeballNorth,
+    [ANIM_ENTER_POKEBALL_WEST] = sAnim_EnterPokeballWest,
+    [ANIM_ENTER_POKEBALL_EAST] = sAnim_EnterPokeballEast_Asym,
+    [ANIM_ENTER_POKEBALL_FAST_SOUTH] = sAnim_EnterPokeballFastSouth,
+    [ANIM_ENTER_POKEBALL_FAST_NORTH] = sAnim_EnterPokeballFastNorth,
+    [ANIM_ENTER_POKEBALL_FAST_WEST] = sAnim_EnterPokeballFastWest,
+    [ANIM_ENTER_POKEBALL_FAST_EAST] = sAnim_EnterPokeballFastEast_Asym,
+    [ANIM_EXIT_POKEBALL_SOUTH] = sAnim_ExitPokeballSouth,
+    [ANIM_EXIT_POKEBALL_NORTH] = sAnim_ExitPokeballNorth,
+    [ANIM_EXIT_POKEBALL_WEST] = sAnim_ExitPokeballWest,
+    [ANIM_EXIT_POKEBALL_EAST] = sAnim_ExitPokeballEast_Asym,
+    [ANIM_EXIT_POKEBALL_FAST_SOUTH] = sAnim_ExitPokeballFastSouth,
+    [ANIM_EXIT_POKEBALL_FAST_NORTH] = sAnim_ExitPokeballFastNorth,
+    [ANIM_EXIT_POKEBALL_FAST_WEST] = sAnim_ExitPokeballFastWest,
+    [ANIM_EXIT_POKEBALL_FAST_EAST] = sAnim_ExitPokeballFastEast_Asym,
 };
 
 static const union AnimCmd sAnim_FieldMove[] =
