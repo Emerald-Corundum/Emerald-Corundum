@@ -2194,7 +2194,6 @@ void UpdateFollowingPokemon(void)
     u16 species;
     bool8 shiny;
     u8 form;
-
     // Don't spawn follower if:
     // 1. GetFollowerInfo returns FALSE
     // 2. Map is indoors and gfx is larger than 32x32

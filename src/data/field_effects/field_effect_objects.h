@@ -576,6 +576,14 @@ static const struct SpriteFrameImage sPicTable_SlitherTracks[] = {
 	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 3),
 };
 
+
+static const struct SpriteFrameImage sPicTable_SlitherTracks[] = {
+	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 0),
+	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 1),
+	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 2),
+	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 3),
+};
+
 static const union AnimCmd sBikeTireTracksAnim_South[] =
 {
     ANIMCMD_FRAME(2, 1),
