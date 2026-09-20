@@ -348,6 +348,13 @@
 #define MOVEMENT_ACTION_EXIT_POKEBALL                   MOVEMENT_ACTION_RIDE_WATER_CURRENT_SOUTHWEST
 #define MOVEMENT_ACTION_ENTER_POKEBALL                  MOVEMENT_ACTION_RIDE_WATER_CURRENT_SOUTHEAST
 
+#define MOVEMENT_ACTION_EMOTE_X                         0x9E
+#define MOVEMENT_ACTION_EMOTE_DOUBLE_EXCL_MARK          0x9F
+#define MOVEMENT_ACTION_RUN_DOWN_SLOW                   0xA2    // slow running for rocky stairs
+#define MOVEMENT_ACTION_RUN_UP_SLOW                     0xA3
+#define MOVEMENT_ACTION_RUN_LEFT_SLOW                   0xA4
+#define MOVEMENT_ACTION_RUN_RIGHT_SLOW                  0xA5
+
 #define MOVEMENT_ACTION_STEP_END 0xFE
 #define MOVEMENT_ACTION_NONE     0xFF
 

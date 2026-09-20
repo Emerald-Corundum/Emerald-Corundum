@@ -11,6 +11,14 @@
 #define FOOTPRINT(sprite)
 #endif
 
+#if B_ENEMY_MON_SHADOW_STYLE >= GEN_4 && P_GBA_STYLE_SPECIES_GFX == FALSE
+#define SHADOW(x, y, size)  .enemyShadowXOffset = x, .enemyShadowYOffset = y, .enemyShadowSize = size,
+#define NO_SHADOW           .suppressEnemyShadow = TRUE,
+#else
+#define SHADOW(x, y, size)  .enemyShadowXOffset = 0, .enemyShadowYOffset = 0, .enemyShadowSize = 0,
+#define NO_SHADOW           .suppressEnemyShadow = FALSE,
+#endif
+
 #define SIZE_32x32 1
 #define SIZE_64x64 0
 
@@ -22,11 +30,25 @@
 #define OVERWORLD_PAL(...)                                  \
     .overworldPalette = DEFAULT(NULL, __VA_ARGS__),         \
     .overworldShinyPalette = DEFAULT_2(NULL, __VA_ARGS__),
+#if P_GENDER_DIFFERENCES
+#define OVERWORLD_PAL_FEMALE(...)                                 \
+    .overworldPaletteFemale = DEFAULT(NULL, __VA_ARGS__),         \
+    .overworldShinyPaletteFemale = DEFAULT_2(NULL, __VA_ARGS__),
+#else
+#define OVERWORLD_PAL_FEMALE(...)
+#endif //P_GENDER_DIFFERENCES
 #else
 #define OVERWORLD_PAL(...)
+#define OVERWORLD_PAL_FEMALE(...)
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
 
 #define OVERWORLD(_picTable, _size, _shadow, _tracks, ...) OVERWORLD_SET_ANIM(_picTable, _size, _shadow, _tracks, sAnimTable_Walk2F, __VA_ARGS__)
+
+#if P_GENDER_DIFFERENCES
+#define OVERWORLD_FEMALE(picTable, _size, _shadow, _tracks, ...) OVERWORLD_SET_ANIM(_picTable, _size, _shadow, sAnimTable_Walk2F, __VA_ARGS__)
+#else
+#define OVERWORLD_FEMALE(picTable, _size, shadow, _tracks, ...)
+#endif //P_GENDER_DIFFERENCES
 
 #define OVERWORLD_SET_ANIM(picTable, _size, _shadow, _tracks, _anims, ...)                  \
 .overworldData = {                                                                          \
@@ -48,9 +70,13 @@
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
 },                                                                                          \
     OVERWORLD_PAL(__VA_ARGS__)
+
 #else
-#define OVERWORLD(_picTable, _size, _shadow, _tracks, ...)
-#define OVERWORLD_SET_ANIM(_picTable, _size, _shadow, _tracks, _anims, ...)
+#define OVERWORLD(picTable, _size, shadow, _tracks, ...)
+#define OVERWORLD_SET_ANIM(picTable, _size, shadow, _tracks, _anims, ...)
+#define OVERWORLD_FEMALE(picTable, _size, shadow, _tracks, ...)
+#define OVERWORLD_PAL(...)
+#define OVERWORLD_PAL_FEMALE(...)
 #endif //OW_POKEMON_OBJECT_EVENTS
 
 // Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.
@@ -62,12 +88,6 @@
 
 #define FLIP    0
 #define NO_FLIP 1
-
-#if POKEMON_NAME_LENGTH >= 12
-#define HANDLE_EXPANDED_SPECIES_NAME(_name, ...) _(DEFAULT(_name, __VA_ARGS__))
-#else
-#define HANDLE_EXPANDED_SPECIES_NAME(_name, ...) _(_name)
-#endif
 
 const struct SpeciesInfo gSpeciesInfo[] =
 {
@@ -188,25 +208,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_CircledQuestionMark,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
-        //.frontPicFemale = gMonFrontPic_CircledQuestionMark,
-        //.frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_None,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_CircledQuestionMark,
         .backPicSize = MON_COORDS_SIZE(64, 64),
-        //.backPicFemale = gMonBackPic_CircledQuestionMarkF,
-        //.backPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 7,
+#if P_GENDER_DIFFERENCES
+        .frontPicFemale = gMonFrontPic_CircledQuestionMark,
+        .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
+        .backPicFemale = gMonBackPic_CircledQuestionMarkF,
+        .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
+        .paletteFemale = gMonPalette_CircledQuestionMarkF,
+        .shinyPaletteFemale = gMonShinyPalette_CircledQuestionMarkF,
+        .iconSpriteFemale = gMonIcon_QuestionMarkF,
+        .iconPalIndexFemale = 1,
+#endif //P_GENDER_DIFFERENCES
         .backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_CircledQuestionMark,
         .shinyPalette = gMonShinyPalette_CircledQuestionMark,
-        //.paletteFemale = gMonPalette_CircledQuestionMarkF,
-        .shinyPaletteFemale = gMonShinyPalette_CircledQuestionMarkF,
         .iconSprite = gMonIcon_QuestionMark,
         .iconPalIndex = 0,
-        //.iconSpriteFemale = gMonIcon_QuestionMarkF,
-        //.iconPalIndexFemale = 1,
         FOOTPRINT(QuestionMark)
         .levelUpLearnset = sNoneLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
@@ -214,7 +236,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_MOOMOO_MILK, SPECIES_NONE}),
         //.formSpeciesIdTable = sNoneFormSpeciesIdTable,
         //.formChangeTable = sNoneFormChangeTable,
-        .allPerfectIVs = TRUE,
+        //.perfectIVCount = NUM_STATS,
     },
     */
 };
