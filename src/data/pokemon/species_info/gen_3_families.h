@@ -53,7 +53,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .iconPalIndex = 1,
         FOOTPRINT(Treecko)
 #if OW_TREECKO_DIAGONAL_MOVEMENT == TRUE
-        OVERWORLD_ANIM(
+        OVERWORLD_SET_ANIM(
             sPicTable_Treecko_Diagonal,
             SIZE_32x32,
             SHADOW_SIZE_M,

@@ -553,7 +553,6 @@ static const struct SpriteFrameImage sPicTable_BikeTireTracks[] = {
     overworld_ascending_frames(gFieldEffectObjectPic_BikeTireTracks, 4, 4),
 };
 
-
 static const struct SpriteFrameImage sPicTable_SlitherTracks[] = {
     overworld_ascending_frames(gFieldEffectObjectPic_SlitherTracks, 2, 2),
 };

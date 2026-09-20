@@ -26,8 +26,9 @@
 #define OVERWORLD_PAL(...)
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
 
-#define OVERWORLD(_picTable, _size, _shadow, _tracks, ...) OVERWORLD_ANIM(_picTable, _size, _shadow, _tracks, sAnimTable_Walk2F, __VA_ARGS__)
-#define OVERWORLD_ANIM(_picTable, _size, _shadow, _tracks, _anims, ...)                     \
+#define OVERWORLD(_picTable, _size, _shadow, _tracks, ...) OVERWORLD_SET_ANIM(_picTable, _size, _shadow, _tracks, sAnimTable_Walk2F, __VA_ARGS__)
+
+#define OVERWORLD_SET_ANIM(picTable, _size, _shadow, _tracks, _anims, ...)                  \
 .overworldData = {                                                                          \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
@@ -43,13 +44,13 @@
     .oam = (_size == SIZE_32x32 ? &gObjectEventBaseOam_32x32 : &gObjectEventBaseOam_64x64), \
     .subspriteTables = (_size == SIZE_32x32 ? sOamTables_32x32 : sOamTables_64x64),         \
     .anims = _anims,                                                                        \
-    .images = _picTable,                                                                    \
+    .images = picTable,                                                                     \
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
 },                                                                                          \
     OVERWORLD_PAL(__VA_ARGS__)
 #else
 #define OVERWORLD(_picTable, _size, _shadow, _tracks, ...)
-#define OVERWORLD_ANIM(_picTable, _size, _shadow, _tracks, _anims, ...)
+#define OVERWORLD_SET_ANIM(_picTable, _size, _shadow, _tracks, _anims, ...)
 #endif //OW_POKEMON_OBJECT_EVENTS
 
 // Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.
