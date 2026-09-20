@@ -522,66 +522,40 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_DeepSandFootprints = {
 };
 
 static const struct SpriteFrameImage sPicTable_BugTracks[] = {
-	overworld_frame(gFieldEffectObjectPic_BugTracks, 2, 2, 0),
-	overworld_frame(gFieldEffectObjectPic_BugTracks, 2, 2, 1),
+    overworld_ascending_frames(gFieldEffectObjectPic_BugTracks, 2, 2),
 };
 
 static const struct SpriteFrameImage sPicTable_SpotTracks[] = {
-	overworld_frame(gFieldEffectObjectPic_SpotTracks, 2, 2, 0),
-	overworld_frame(gFieldEffectObjectPic_SpotTracks, 2, 2, 1),
+    overworld_ascending_frames(gFieldEffectObjectPic_SpotTracks, 2, 2),
 };
 
 const struct SpriteTemplate gFieldEffectObjectTemplate_BugTracks = {
-	.tileTag = 0xFFFF,
-	.paletteTag = FLDEFF_PAL_TAG_GENERAL_0,
-	.oam = &gObjectEventBaseOam_16x16,
-	.anims = sAnimTable_DeepSandFootprints,
-	.images = sPicTable_BugTracks,
-	.affineAnims = gDummySpriteAffineAnimTable,
-	.callback = UpdateFootprintsTireTracksFieldEffect,
+    .tileTag = 0xFFFF,
+    .paletteTag = FLDEFF_PAL_TAG_GENERAL_0,
+    .oam = &gObjectEventBaseOam_16x16,
+    .anims = sAnimTable_DeepSandFootprints,
+    .images = sPicTable_BugTracks,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = UpdateFootprintsTireTracksFieldEffect,
 };
 
 const struct SpriteTemplate gFieldEffectObjectTemplate_SpotTracks = {
-	.tileTag = 0xFFFF,
-	.paletteTag = FLDEFF_PAL_TAG_GENERAL_0,
-	.oam = &gObjectEventBaseOam_16x16,
-	.anims = sAnimTable_DeepSandFootprints,
-	.images = sPicTable_SpotTracks,
-	.affineAnims = gDummySpriteAffineAnimTable,
-	.callback = UpdateFootprintsTireTracksFieldEffect,
+    .tileTag = 0xFFFF,
+    .paletteTag = FLDEFF_PAL_TAG_GENERAL_0,
+    .oam = &gObjectEventBaseOam_16x16,
+    .anims = sAnimTable_DeepSandFootprints,
+    .images = sPicTable_SpotTracks,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = UpdateFootprintsTireTracksFieldEffect,
 };
 
 static const struct SpriteFrameImage sPicTable_BikeTireTracks[] = {
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 0),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 1),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 2),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 3),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 4),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 5),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 6),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 7),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 8),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 9),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 10),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 11),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 12),
-    overworld_frame(gFieldEffectObjectPic_BikeTireTracks, 4, 4, 13),
+    overworld_ascending_frames(gFieldEffectObjectPic_BikeTireTracks, 4, 4),
 };
 
 
 static const struct SpriteFrameImage sPicTable_SlitherTracks[] = {
-	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 0),
-	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 1),
-	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 2),
-	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 3),
-};
-
-
-static const struct SpriteFrameImage sPicTable_SlitherTracks[] = {
-	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 0),
-	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 1),
-	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 2),
-	overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 3),
+    overworld_ascending_frames(gFieldEffectObjectPic_SlitherTracks, 2, 2),
 };
 
 static const union AnimCmd sBikeTireTracksAnim_South[] =
@@ -861,13 +835,13 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_BikeTireTracks = {
 
 
 const struct SpriteTemplate gFieldEffectObjectTemplate_SlitherTracks = {
-	.tileTag = 0xFFFF,
-	.paletteTag = FLDEFF_PAL_TAG_GENERAL_0,
-	.oam = &gObjectEventBaseOam_16x16,
-	.anims = sAnimTable_BikeTireTracks,
-	.images = sPicTable_SlitherTracks,
-	.affineAnims = gDummySpriteAffineAnimTable,
-	.callback = UpdateFootprintsTireTracksFieldEffect,
+    .tileTag = 0xFFFF,
+    .paletteTag = FLDEFF_PAL_TAG_GENERAL_0,
+    .oam = &gObjectEventBaseOam_16x16,
+    .anims = sAnimTable_BikeTireTracks,
+    .images = sPicTable_SlitherTracks,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = UpdateFootprintsTireTracksFieldEffect,
 };
 
 static const struct SpriteFrameImage sPicTable_JumpBigSplash[] = {
