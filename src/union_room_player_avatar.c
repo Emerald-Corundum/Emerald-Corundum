@@ -111,12 +111,12 @@ static const u16 sHidePlayerFlags[] = {
     FLAG_HIDE_UNION_ROOM_PLAYER_8
 };
 
-static const u8 sMovement_UnionPlayerExit[2] = {
+static const u16 sMovement_UnionPlayerExit[2] = {
     MOVEMENT_ACTION_FLY_UP,
     MOVEMENT_ACTION_STEP_END
 };
 
-static const u8 sMovement_UnionPlayerEnter[2] = {
+static const u16 sMovement_UnionPlayerEnter[2] = {
     MOVEMENT_ACTION_FLY_DOWN,
     MOVEMENT_ACTION_STEP_END
 };
@@ -180,7 +180,7 @@ static void RemoveUnionRoomPlayerObjectEvent(u32 leaderId)
     RemoveObjectEventByLocalIdAndMap(sUnionRoomLocalIds[leaderId], gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
 }
 
-static bool32 SetUnionRoomPlayerEnterExitMovement(u32 leaderId, const u8 *movement)
+static bool32 SetUnionRoomPlayerEnterExitMovement(u32 leaderId, const u16 *movement)
 {
     u8 objectId;
     struct ObjectEvent * object;

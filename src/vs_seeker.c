@@ -91,31 +91,31 @@ static u8 GetVsSeekerResponseInArea(void);
 #if FREE_MATCH_CALL == FALSE
 static u8 GetResponseMovementTypeFromTrainerGraphicsId(u8 graphicsId);
 #endif //FREE_MATCH_CALL
-static u16 GetTrainerFlagFromScript(const u8 * script);
+static u16 GetTrainerFlagFromScript(const u8 *script);
 static void ClearAllTrainerRematchStates(void);
 #if FREE_MATCH_CALL == FALSE
-static bool8 IsTrainerVisibleOnScreen(struct VsSeekerTrainerInfo * trainerInfo);
+static bool8 IsTrainerVisibleOnScreen(struct VsSeekerTrainerInfo *trainerInfo);
 static u32 GetRematchableTrainerLocalId(void);
-static void StartTrainerObjectMovementScript(struct VsSeekerTrainerInfo * trainerInfo, const u8 * script);
+static void StartTrainerObjectMovementScript(struct VsSeekerTrainerInfo *trainerInfo, const u16 *script);
 static u8 GetCurVsSeekerResponse(s32 vsSeekerIdx, u16 trainerIdx);
 #endif //FREE_MATCH_CALL
 static void StartAllRespondantIdleMovements(void);
 static bool8 ObjectEventIdIsSane(u8 objectEventId);
 static u8 GetRandomFaceDirectionMovementType();
 
-static const u8 sMovementScript_Wait48[] = {
+static const u16 sMovementScript_Wait48[] = {
     MOVEMENT_ACTION_DELAY_16,
     MOVEMENT_ACTION_DELAY_16,
     MOVEMENT_ACTION_DELAY_16,
     MOVEMENT_ACTION_STEP_END
 };
 
-static const u8 sMovementScript_TrainerUnfought[] = {
+static const u16 sMovementScript_TrainerUnfought[] = {
     MOVEMENT_ACTION_EMOTE_EXCLAMATION_MARK,
     MOVEMENT_ACTION_STEP_END
 };
 
-static const u8 sFaceDirectionMovementTypeByFacingDirection[] = {
+static const u16 sFaceDirectionMovementTypeByFacingDirection[] = {
     MOVEMENT_TYPE_FACE_DOWN,
     MOVEMENT_TYPE_FACE_DOWN,
     MOVEMENT_TYPE_FACE_UP,
@@ -728,7 +728,7 @@ static void ClearAllTrainerRematchStates(void)
 }
 
 #if FREE_MATCH_CALL == FALSE
-static bool8 IsTrainerVisibleOnScreen(struct VsSeekerTrainerInfo * trainerInfo)
+static bool8 IsTrainerVisibleOnScreen(struct VsSeekerTrainerInfo *trainerInfo)
 {
     s16 x;
     s16 y;
@@ -762,7 +762,7 @@ static u32 GetRematchableTrainerLocalId(void)
     return 0xFF;
 }
 
-static void StartTrainerObjectMovementScript(struct VsSeekerTrainerInfo * trainerInfo, const u8 * script)
+static void StartTrainerObjectMovementScript(struct VsSeekerTrainerInfo *trainerInfo, const u16 *script)
 {
     UnfreezeObjectEvent(&gObjectEvents[trainerInfo->objectEventId]);
     ScriptMovement_StartObjectMovementScript(trainerInfo->localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, script);

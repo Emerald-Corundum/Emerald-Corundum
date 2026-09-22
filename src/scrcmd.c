@@ -1001,7 +1001,7 @@ bool8 ScrCmd_fadeinbgm(struct ScriptContext *ctx)
 bool8 ScrCmd_applymovement(struct ScriptContext *ctx)
 {
     u16 localId = VarGet(ScriptReadHalfword(ctx));
-    const u8 *movementScript = (const u8 *)ScriptReadWord(ctx);
+    const u16 *movementScript = (const u16 *)ScriptReadWord(ctx);
     struct ObjectEvent *objEvent;
 
     // When applying script movements to follower, it may have frozen animation that must be cleared

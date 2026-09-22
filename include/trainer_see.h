@@ -10,7 +10,7 @@ struct ApproachingTrainer
 };
 
 extern u16 gWhichTrainerToFaceAfterBattle;
-extern u8 gPostBattleMovementScript[4];
+extern u16 gPostBattleMovementScript[4];
 extern struct ApproachingTrainer gApproachingTrainers[2];
 extern u8 gNoOfApproachingTrainers;
 extern bool8 gTrainerApproachedPlayer;

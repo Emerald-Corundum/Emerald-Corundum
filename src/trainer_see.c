@@ -50,7 +50,7 @@ static void SpriteCB_TrainerIcons(struct Sprite *sprite);
 
 // IWRAM common
 COMMON_DATA u16 gWhichTrainerToFaceAfterBattle = 0;
-COMMON_DATA u8 gPostBattleMovementScript[4] = {0};
+COMMON_DATA u16 gPostBattleMovementScript[4] = {0};
 COMMON_DATA struct ApproachingTrainer gApproachingTrainers[2] = {0};
 COMMON_DATA u8 gNoOfApproachingTrainers = 0;
 COMMON_DATA bool8 gTrainerApproachedPlayer = 0;

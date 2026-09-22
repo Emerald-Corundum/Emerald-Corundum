@@ -25,7 +25,7 @@ struct RotatingTilePuzzle
     bool8 isTrickHouse;
 };
 
-static const u8 sMovement_ShiftRight[] =
+static const u16 sMovement_ShiftRight[] =
 {
     MOVEMENT_ACTION_LOCK_ANIM,
     MOVEMENT_ACTION_WALK_NORMAL_RIGHT,
@@ -33,7 +33,7 @@ static const u8 sMovement_ShiftRight[] =
     MOVEMENT_ACTION_STEP_END
 };
 
-static const u8 sMovement_ShiftDown[] =
+static const u16 sMovement_ShiftDown[] =
 {
     MOVEMENT_ACTION_LOCK_ANIM,
     MOVEMENT_ACTION_WALK_NORMAL_DOWN,
@@ -41,7 +41,7 @@ static const u8 sMovement_ShiftDown[] =
     MOVEMENT_ACTION_STEP_END
 };
 
-static const u8 sMovement_ShiftLeft[] =
+static const u16 sMovement_ShiftLeft[] =
 {
     MOVEMENT_ACTION_LOCK_ANIM,
     MOVEMENT_ACTION_WALK_NORMAL_LEFT,
@@ -49,7 +49,7 @@ static const u8 sMovement_ShiftLeft[] =
     MOVEMENT_ACTION_STEP_END
 };
 
-static const u8 sMovement_ShiftUp[] =
+static const u16 sMovement_ShiftUp[] =
 {
     MOVEMENT_ACTION_LOCK_ANIM,
     MOVEMENT_ACTION_WALK_NORMAL_UP,
@@ -57,25 +57,25 @@ static const u8 sMovement_ShiftUp[] =
     MOVEMENT_ACTION_STEP_END
 };
 
-static const u8 sMovement_FaceRight[] =
+static const u16 sMovement_FaceRight[] =
 {
     MOVEMENT_ACTION_FACE_RIGHT,
     MOVEMENT_ACTION_STEP_END
 };
 
-static const u8 sMovement_FaceDown[] =
+static const u16 sMovement_FaceDown[] =
 {
     MOVEMENT_ACTION_FACE_DOWN,
     MOVEMENT_ACTION_STEP_END
 };
 
-static const u8 sMovement_FaceLeft[] =
+static const u16 sMovement_FaceLeft[] =
 {
     MOVEMENT_ACTION_FACE_LEFT,
     MOVEMENT_ACTION_STEP_END
 };
 
-static const u8 sMovement_FaceUp[] =
+static const u16 sMovement_FaceUp[] =
 {
     MOVEMENT_ACTION_FACE_UP,
     MOVEMENT_ACTION_STEP_END
@@ -144,7 +144,7 @@ u16 MoveRotatingTileObjects(u8 puzzleNumber)
         {
             s8 x = 0;
             s8 y = 0;
-            const u8 *movementScript;
+            const u16 *movementScript;
 
             switch (puzzleTileNum)
             {
@@ -240,7 +240,7 @@ void TurnRotatingTileObjects(void)
         objectEventId = GetObjectEventIdByLocalIdAndMap(objectEvents[sRotatingTilePuzzle->objects[i].eventTemplateId].localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
         if (objectEventId != OBJECT_EVENTS_COUNT)
         {
-            const u8 *movementScript;
+            const u16 *movementScript;
             u8 direction = gObjectEvents[objectEventId].facingDirection;
             if (rotation == ROTATE_COUNTERCLOCKWISE)
             {

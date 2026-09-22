@@ -387,7 +387,7 @@ static bool8 TryInterruptObjectEventSpecialAnim(struct ObjectEvent *playerObjEve
     if (ObjectEventIsMovementOverridden(playerObjEvent)
      && !ObjectEventClearHeldMovementIfFinished(playerObjEvent))
     {
-        u8 heldMovementActionId = ObjectEventGetHeldMovementActionId(playerObjEvent);
+        u16 heldMovementActionId = ObjectEventGetHeldMovementActionId(playerObjEvent);
         if (heldMovementActionId > MOVEMENT_ACTION_WALK_FAST_RIGHT && heldMovementActionId < MOVEMENT_ACTION_WALK_IN_PLACE_NORMAL_DOWN)
         {
             if (direction == DIR_NONE)
@@ -1049,7 +1049,7 @@ void UpdatePlayerAvatarTransitionState(void)
 
 static bool8 PlayerAnimIsMultiFrameStationary(void)
 {
-    u8 movementActionId = gObjectEvents[gPlayerAvatar.objectEventId].movementActionId;
+    u16 movementActionId = gObjectEvents[gPlayerAvatar.objectEventId].movementActionId;
 
     if (movementActionId <= MOVEMENT_ACTION_FACE_RIGHT
      || (movementActionId >= MOVEMENT_ACTION_FACE_SOUTHWEST && movementActionId <= MOVEMENT_ACTION_FACE_NORTHEAST)
@@ -1770,7 +1770,7 @@ static bool8 PlayerAvatar_SecretBaseMatSpinStep1(struct Task *task, struct Objec
 
 static bool8 PlayerAvatar_SecretBaseMatSpinStep2(struct Task *task, struct ObjectEvent *objectEvent)
 {
-    const u8 actions[] = {
+    const u16 actions[] = {
         MOVEMENT_ACTION_DELAY_1,
         MOVEMENT_ACTION_DELAY_1,
         MOVEMENT_ACTION_DELAY_2,
