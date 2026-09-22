@@ -684,8 +684,6 @@ u8 (*const gMovementActionFuncs_AcroEndWheelieMoveSouthwest[])(struct ObjectEven
 u8 (*const gMovementActionFuncs_AcroEndWheelieMoveSoutheast[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_AcroEndWheelieMoveNorthwest[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_AcroEndWheelieMoveNortheast[])(struct ObjectEvent *, struct Sprite *);
-u8 (*const gMovementActionFuncs_EmoteX[])(struct ObjectEvent *, struct Sprite *);
-u8 (*const gMovementActionFuncs_EmoteDoubleExclMark[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_RunDownSlow[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_RunUpSlow[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_RunLeftSlow[])(struct ObjectEvent *, struct Sprite *);
@@ -888,8 +886,8 @@ u8 (*const *const gMovementActionFuncs[])(struct ObjectEvent *, struct Sprite *)
     [MOVEMENT_ACTION_PLAYER_RUN_NORTHEAST] = gMovementActionFuncs_PlayerRunNortheast,
     // [MOVEMENT_ACTION_RIDE_WATER_CURRENT_SOUTHWEST] = gMovementActionFuncs_RideWaterCurrentSouthwest,
     // [MOVEMENT_ACTION_RIDE_WATER_CURRENT_SOUTHEAST] = gMovementActionFuncs_RideWaterCurrentSoutheast,
-    [MOVEMENT_ACTION_RIDE_WATER_CURRENT_NORTHWEST] = gMovementActionFuncs_RideWaterCurrentNorthwest,
-    [MOVEMENT_ACTION_RIDE_WATER_CURRENT_NORTHEAST] = gMovementActionFuncs_RideWaterCurrentNortheast,
+    // [MOVEMENT_ACTION_RIDE_WATER_CURRENT_NORTHWEST] = gMovementActionFuncs_RideWaterCurrentNorthwest,
+    // [MOVEMENT_ACTION_RIDE_WATER_CURRENT_NORTHEAST] = gMovementActionFuncs_RideWaterCurrentNortheast,
     [MOVEMENT_ACTION_JUMP_SOUTHWEST] = gMovementActionFuncs_JumpSouthwest,
     [MOVEMENT_ACTION_JUMP_SOUTHEAST] = gMovementActionFuncs_JumpSoutheast,
     [MOVEMENT_ACTION_JUMP_NORTHWEST] = gMovementActionFuncs_JumpNorthwest,
@@ -898,8 +896,8 @@ u8 (*const *const gMovementActionFuncs[])(struct ObjectEvent *, struct Sprite *)
     [MOVEMENT_ACTION_JUMP_IN_PLACE_SOUTHEAST] = gMovementActionFuncs_JumpInPlaceSoutheast,
     [MOVEMENT_ACTION_JUMP_IN_PLACE_NORTHWEST] = gMovementActionFuncs_JumpInPlaceNorthwest,
     [MOVEMENT_ACTION_JUMP_IN_PLACE_NORTHEAST] = gMovementActionFuncs_JumpInPlaceNortheast,
-    [MOVEMENT_ACTION_JUMP_IN_PLACE_SOUTHWEST_NORTHEAST] = gMovementActionFuncs_JumpInPlaceSouthwestNortheast,
-    [MOVEMENT_ACTION_JUMP_IN_PLACE_SOUTHEAST_NORTHWEST] = gMovementActionFuncs_JumpInPlaceSoutheastNorthwest,
+    // [MOVEMENT_ACTION_JUMP_IN_PLACE_SOUTHWEST_NORTHEAST] = gMovementActionFuncs_JumpInPlaceSouthwestNortheast,
+    // [MOVEMENT_ACTION_JUMP_IN_PLACE_SOUTHEAST_NORTHWEST] = gMovementActionFuncs_JumpInPlaceSoutheastNorthwest,
     [MOVEMENT_ACTION_JUMP_IN_PLACE_NORTHWEST_SOUTHEAST] = gMovementActionFuncs_JumpInPlaceNorthwestSoutheast,
     [MOVEMENT_ACTION_JUMP_IN_PLACE_NORTHEAST_SOUTHWEST] = gMovementActionFuncs_JumpInPlaceNortheastSouthwest,
     [MOVEMENT_ACTION_JUMP_SPECIAL_SOUTHWEST] = gMovementActionFuncs_JumpSpecialSouthwest,

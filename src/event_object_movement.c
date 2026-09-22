@@ -180,7 +180,7 @@ static void SpriteCB_CameraObject(struct Sprite *);
 static void CameraObject_Init(struct Sprite *);
 static void CameraObject_UpdateMove(struct Sprite *);
 static void CameraObject_UpdateFrozen(struct Sprite *);
-static void ObjectEventSetSingleMovement(struct ObjectEvent *, struct Sprite *, u8);
+static void ObjectEventSetSingleMovement(struct ObjectEvent *, struct Sprite *, u16);
 static void SetSpriteDataForNormalStep(struct Sprite *, u8, u8);
 static void InitSpriteForFigure8Anim(struct Sprite *);
 static bool8 AnimateSpriteInFigure8(struct Sprite *);
@@ -955,7 +955,7 @@ static const struct Coords16 sDirectionToVectors[] = {
     { 2, -1}
 };
 
-const u8 gFaceDirectionMovementActions[] = {
+const u16 gFaceDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_FACE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_FACE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_FACE_UP,
@@ -966,7 +966,7 @@ const u8 gFaceDirectionMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_FACE_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_FACE_NORTHEAST,
 };
-const u8 gWalkSlowMovementActions[] = {
+const u16 gWalkSlowMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_SLOW_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_WALK_SLOW_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_SLOW_UP,
@@ -977,7 +977,7 @@ const u8 gWalkSlowMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_SLOW_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_SLOW_NORTHEAST,
 };
-const u8 gWalkNormalMovementActions[] = {
+const u16 gWalkNormalMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_NORMAL_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_WALK_NORMAL_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_NORMAL_UP,
@@ -988,7 +988,7 @@ const u8 gWalkNormalMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_NORMAL_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_NORMAL_NORTHEAST,
 };
-const u8 gWalkFastMovementActions[] = {
+const u16 gWalkFastMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_FAST_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_WALK_FAST_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_FAST_UP,
@@ -999,7 +999,7 @@ const u8 gWalkFastMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_FAST_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_FAST_NORTHEAST,
 };
-const u8 gRideWaterCurrentMovementActions[] = {
+const u16 gRideWaterCurrentMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_UP,
@@ -1010,7 +1010,7 @@ const u8 gRideWaterCurrentMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_RIDE_WATER_CURRENT_NORTHEAST,
 };
-const u8 gWalkFasterMovementActions[] = {
+const u16 gWalkFasterMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_FASTER_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_WALK_FASTER_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_FASTER_UP,
@@ -1021,14 +1021,14 @@ const u8 gWalkFasterMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_FASTEST_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_FASTEST_NORTHEAST,
 };
-const u8 gSlideMovementActions[] = {
+const u16 gSlideMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_SLIDE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_SLIDE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_SLIDE_UP,
     [DIR_WEST] = MOVEMENT_ACTION_SLIDE_LEFT,
     [DIR_EAST] = MOVEMENT_ACTION_SLIDE_RIGHT,
 };
-const u8 gPlayerRunMovementActions[] = {
+const u16 gPlayerRunMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_PLAYER_RUN_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_PLAYER_RUN_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_PLAYER_RUN_UP,
@@ -1039,7 +1039,7 @@ const u8 gPlayerRunMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_PLAYER_RUN_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_PLAYER_RUN_NORTHEAST,
 };
-const u8 gJump2MovementActions[] = {
+const u16 gJump2MovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_JUMP_2_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_JUMP_2_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_JUMP_2_UP,
@@ -1050,7 +1050,7 @@ const u8 gJump2MovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_JUMP_2_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_JUMP_2_NORTHEAST,
 };
-const u8 gJumpInPlaceMovementActions[] = {
+const u16 gJumpInPlaceMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_JUMP_IN_PLACE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_JUMP_IN_PLACE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_JUMP_IN_PLACE_UP,
@@ -1061,7 +1061,7 @@ const u8 gJumpInPlaceMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_JUMP_IN_PLACE_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_JUMP_IN_PLACE_NORTHEAST,
 };
-const u8 gJumpInPlaceTurnAroundMovementActions[] = {
+const u16 gJumpInPlaceTurnAroundMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_JUMP_IN_PLACE_UP_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_JUMP_IN_PLACE_UP_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_JUMP_IN_PLACE_DOWN_UP,
@@ -1072,7 +1072,7 @@ const u8 gJumpInPlaceTurnAroundMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_JUMP_IN_PLACE_SOUTHEAST_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_JUMP_IN_PLACE_SOUTHWEST_NORTHEAST,
 };
-const u8 gJumpMovementActions[] = {
+const u16 gJumpMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_JUMP_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_JUMP_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_JUMP_UP,
@@ -1083,7 +1083,7 @@ const u8 gJumpMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_JUMP_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_JUMP_NORTHEAST,
 };
-const u8 gJumpSpecialMovementActions[] = {
+const u16 gJumpSpecialMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_JUMP_SPECIAL_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_JUMP_SPECIAL_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_JUMP_SPECIAL_UP,
@@ -1094,7 +1094,7 @@ const u8 gJumpSpecialMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_JUMP_SPECIAL_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_JUMP_SPECIAL_NORTHEAST,
 };
-const u8 gWalkInPlaceSlowMovementActions[] = {
+const u16 gWalkInPlaceSlowMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_IN_PLACE_SLOW_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_WALK_IN_PLACE_SLOW_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_IN_PLACE_SLOW_UP,
@@ -1105,7 +1105,7 @@ const u8 gWalkInPlaceSlowMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_SLOW_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_SLOW_NORTHEAST,
 };
-const u8 gWalkInPlaceNormalMovementActions[] = {
+const u16 gWalkInPlaceNormalMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_IN_PLACE_NORMAL_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_WALK_IN_PLACE_NORMAL_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_IN_PLACE_NORMAL_UP,
@@ -1116,7 +1116,7 @@ const u8 gWalkInPlaceNormalMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_NORMAL_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_NORMAL_NORTHEAST,
 };
-const u8 gWalkInPlaceFastMovementActions[] = {
+const u16 gWalkInPlaceFastMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_UP,
@@ -1127,7 +1127,7 @@ const u8 gWalkInPlaceFastMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FAST_NORTHEAST,
 };
-const u8 gWalkInPlaceFasterMovementActions[] = {
+const u16 gWalkInPlaceFasterMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_WALK_IN_PLACE_FASTER_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_WALK_IN_PLACE_FASTER_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_WALK_IN_PLACE_FASTER_UP,
@@ -1138,7 +1138,7 @@ const u8 gWalkInPlaceFasterMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_WALK_IN_PLACE_FASTEST_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_WALK_IN_PLACE_FASTEST_NORTHEAST,
 };
-const u8 gAcroWheelieFaceDirectionMovementActions[] = {
+const u16 gAcroWheelieFaceDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_ACRO_WHEELIE_FACE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_ACRO_WHEELIE_FACE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_ACRO_WHEELIE_FACE_UP,
@@ -1149,7 +1149,7 @@ const u8 gAcroWheelieFaceDirectionMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_ACRO_WHEELIE_FACE_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_ACRO_WHEELIE_FACE_NORTHEAST,
 };
-const u8 gAcroPopWheelieFaceDirectionMovementActions[] = {
+const u16 gAcroPopWheelieFaceDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_ACRO_POP_WHEELIE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_ACRO_POP_WHEELIE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_ACRO_POP_WHEELIE_UP,
@@ -1160,7 +1160,7 @@ const u8 gAcroPopWheelieFaceDirectionMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_ACRO_POP_WHEELIE_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_ACRO_POP_WHEELIE_NORTHEAST,
 };
-const u8 gAcroEndWheelieFaceDirectionMovementActions[] = {
+const u16 gAcroEndWheelieFaceDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_ACRO_END_WHEELIE_FACE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_ACRO_END_WHEELIE_FACE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_ACRO_END_WHEELIE_FACE_UP,
@@ -1171,7 +1171,7 @@ const u8 gAcroEndWheelieFaceDirectionMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_ACRO_END_WHEELIE_FACE_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_ACRO_END_WHEELIE_FACE_NORTHEAST,
 };
-const u8 gAcroWheelieHopFaceDirectionMovementActions[] = {
+const u16 gAcroWheelieHopFaceDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_ACRO_WHEELIE_HOP_FACE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_ACRO_WHEELIE_HOP_FACE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_ACRO_WHEELIE_HOP_FACE_UP,
@@ -1182,7 +1182,7 @@ const u8 gAcroWheelieHopFaceDirectionMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_ACRO_WHEELIE_HOP_FACE_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_ACRO_WHEELIE_HOP_FACE_NORTHEAST,
 };
-const u8 gAcroWheelieHopDirectionMovementActions[] = {
+const u16 gAcroWheelieHopDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_ACRO_WHEELIE_HOP_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_ACRO_WHEELIE_HOP_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_ACRO_WHEELIE_HOP_UP,
@@ -1193,7 +1193,7 @@ const u8 gAcroWheelieHopDirectionMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_ACRO_WHEELIE_HOP_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_ACRO_WHEELIE_HOP_NORTHEAST,
 };
-const u8 gAcroWheelieJumpDirectionMovementActions[] = {
+const u16 gAcroWheelieJumpDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_UP,
@@ -1204,7 +1204,7 @@ const u8 gAcroWheelieJumpDirectionMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_ACRO_WHEELIE_JUMP_NORTHEAST,
 };
-const u8 gAcroWheelieInPlaceDirectionMovementActions[] = {
+const u16 gAcroWheelieInPlaceDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_ACRO_WHEELIE_IN_PLACE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_ACRO_WHEELIE_IN_PLACE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_ACRO_WHEELIE_IN_PLACE_UP,
@@ -1215,7 +1215,7 @@ const u8 gAcroWheelieInPlaceDirectionMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_ACRO_WHEELIE_IN_PLACE_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_ACRO_WHEELIE_IN_PLACE_NORTHEAST,
 };
-const u8 gAcroPopWheelieMoveDirectionMovementActions[] = {
+const u16 gAcroPopWheelieMoveDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_ACRO_POP_WHEELIE_MOVE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_ACRO_POP_WHEELIE_MOVE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_ACRO_POP_WHEELIE_MOVE_UP,
@@ -1226,7 +1226,7 @@ const u8 gAcroPopWheelieMoveDirectionMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_ACRO_POP_WHEELIE_MOVE_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_ACRO_POP_WHEELIE_MOVE_NORTHEAST,
 };
-const u8 gAcroWheelieMoveDirectionMovementActions[] = {
+const u16 gAcroWheelieMoveDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_ACRO_WHEELIE_MOVE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_ACRO_WHEELIE_MOVE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_ACRO_WHEELIE_MOVE_UP,
@@ -1237,7 +1237,7 @@ const u8 gAcroWheelieMoveDirectionMovementActions[] = {
     [DIR_NORTHWEST] = MOVEMENT_ACTION_ACRO_WHEELIE_MOVE_NORTHWEST,
     [DIR_NORTHEAST] = MOVEMENT_ACTION_ACRO_WHEELIE_MOVE_NORTHEAST,
 };
-const u8 gAcroEndWheelieMoveDirectionMovementActions[] = {
+const u16 gAcroEndWheelieMoveDirectionMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_ACRO_END_WHEELIE_MOVE_DOWN,
     [DIR_SOUTH] = MOVEMENT_ACTION_ACRO_END_WHEELIE_MOVE_DOWN,
     [DIR_NORTH] = MOVEMENT_ACTION_ACRO_END_WHEELIE_MOVE_UP,
@@ -1249,7 +1249,7 @@ const u8 gAcroEndWheelieMoveDirectionMovementActions[] = {
     [DIR_NORTHEAST] = MOVEMENT_ACTION_ACRO_END_WHEELIE_MOVE_NORTHEAST,
 };
 // run slow
-const u8 gRunSlowMovementActions[] = {
+const u16 gRunSlowMovementActions[] = {
     [DIR_NONE] = MOVEMENT_ACTION_RUN_DOWN_SLOW,
     [DIR_SOUTH] = MOVEMENT_ACTION_RUN_DOWN_SLOW,
     [DIR_NORTH] = MOVEMENT_ACTION_RUN_UP_SLOW,
@@ -4822,7 +4822,7 @@ bool8 MovementType_WalkBackAndForth_Step1(struct ObjectEvent *objectEvent, struc
 bool8 MovementType_WalkBackAndForth_Step2(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     bool8 collision;
-    u8 movementActionId;
+    u16 movementActionId;
 
     if (objectEvent->directionSequenceIndex && objectEvent->initialCoords.x == objectEvent->currentCoords.x && objectEvent->initialCoords.y == objectEvent->currentCoords.y)
     {
@@ -4868,7 +4868,7 @@ bool8 MovementType_WalkSequence_Step0(struct ObjectEvent *objectEvent, struct Sp
 bool8 MoveNextDirectionInSequence(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 *route)
 {
     u8 collision;
-    u8 movementActionId;
+    u16 movementActionId;
 
     if (objectEvent->directionSequenceIndex == 3 && objectEvent->initialCoords.x == objectEvent->currentCoords.x && objectEvent->initialCoords.y == objectEvent->currentCoords.y)
         objectEvent->directionSequenceIndex = 0;
@@ -5840,9 +5840,10 @@ bool8 MovementType_Buried_Step0(struct ObjectEvent *objectEvent, struct Sprite *
 bool8 MovementType_MoveInPlace_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     if (ObjectEventExecSingleMovementAction(objectEvent, sprite))
+    {
         sprite->sTypeFuncId = 0;
-    // similar to UpdateMonMoveInPlace
-    else if (OW_FOLLOWERS_BOBBING == TRUE
+    }
+    else if (OW_FOLLOWERS_BOBBING == TRUE // similar to UpdateMonMoveInPlace
           && IS_OW_MON_OBJ(objectEvent)
           && (sprite->data[3] & 7) == 2)
     {
@@ -6485,7 +6486,7 @@ bool8 ObjectEventIsHeldMovementActive(struct ObjectEvent *objectEvent)
     return FALSE;
 }
 
-static u8 TryUpdateMovementActionOnStairs(struct ObjectEvent *objectEvent, u8 movementActionId)
+static u16 TryUpdateMovementActionOnStairs(struct ObjectEvent *objectEvent, u16 movementActionId)
 {
     if (objectEvent->isPlayer || objectEvent->localId == OBJ_EVENT_ID_FOLLOWER)
         return movementActionId;    // handled separately
@@ -6508,7 +6509,7 @@ static u8 TryUpdateMovementActionOnStairs(struct ObjectEvent *objectEvent, u8 mo
     }
 }
 
-bool8 ObjectEventSetHeldMovement(struct ObjectEvent *objectEvent, u8 movementActionId)
+bool8 ObjectEventSetHeldMovement(struct ObjectEvent *objectEvent, u16 movementActionId)
 {
     if (ObjectEventIsMovementOverridden(objectEvent))
         return TRUE;
@@ -6523,7 +6524,7 @@ bool8 ObjectEventSetHeldMovement(struct ObjectEvent *objectEvent, u8 movementAct
     return FALSE;
 }
 
-void ObjectEventForceSetHeldMovement(struct ObjectEvent *objectEvent, u8 movementActionId)
+void ObjectEventForceSetHeldMovement(struct ObjectEvent *objectEvent, u16 movementActionId)
 {
     movementActionId = TryUpdateMovementActionOnStairs(objectEvent, movementActionId);
     ObjectEventClearHeldMovementIfActive(objectEvent);
@@ -6562,7 +6563,7 @@ u8 ObjectEventClearHeldMovementIfFinished(struct ObjectEvent *objectEvent)
     return heldMovementStatus;
 }
 
-u8 ObjectEventGetHeldMovementActionId(struct ObjectEvent *objectEvent)
+u16 ObjectEventGetHeldMovementActionId(struct ObjectEvent *objectEvent)
 {
     if (objectEvent->heldMovementActive)
         return TryUpdateMovementActionOnStairs(objectEvent, objectEvent->movementActionId);
@@ -6588,13 +6589,13 @@ void UpdateObjectEventCurrentMovement(struct ObjectEvent *objectEvent, struct Sp
 }
 
 #define dirn_to_anim(name, table)\
-u8 name(u32 idx)                             \
+u16 name(u32 idx)                            \
 {                                            \
     u8 direction;                            \
-    u8 animIds[sizeof(table)];               \
+    u16 animIds[ARRAY_COUNT(table)];         \
     direction = idx;                         \
     memcpy(animIds, (table), sizeof(table)); \
-    if (direction > sizeof(table))           \
+    if (direction > ARRAY_COUNT(table))      \
         direction = 0;                       \
     return animIds[direction];               \
 }
@@ -6724,7 +6725,7 @@ static bool8 ObjectEventExecSingleMovementAction(struct ObjectEvent *objectEvent
     return FALSE;
 }
 
-static void ObjectEventSetSingleMovement(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 animId)
+static void ObjectEventSetSingleMovement(struct ObjectEvent *objectEvent, struct Sprite *sprite, u16 animId)
 {
     objectEvent->movementActionId = TryUpdateMovementActionOnStairs(objectEvent, animId);
     sprite->sActionFuncId = 0;
