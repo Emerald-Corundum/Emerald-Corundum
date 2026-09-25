@@ -1,3 +1,11 @@
+FollowerDiagonalTest::
+	walk_diag_southwest
+	walk_diag_southeast
+	walk_diag_northeast
+	walk_diag_northwest
+	face_player
+	step_end
+
 Common_EventScript_PkmnCenterNurse::
 	lock
 	faceplayer
@@ -33,6 +41,8 @@ EventScript_PkmnCenterNurse_IllTakeYourPkmn2::
 	return
 
 EventScript_PkmnCenterNurse_TakeAndHealPkmn::
+	applymovement OBJ_EVENT_ID_FOLLOWER, FollowerDiagonalTest
+	waitmovement 0
 	hidefollower 0
 	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Turn
 	waitmovement 0
