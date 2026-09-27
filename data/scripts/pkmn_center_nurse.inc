@@ -6,6 +6,13 @@ FollowerDiagonalTest::
 	face_player
 	step_end
 
+DiagonalTest::
+	acro_wheelie_move_southwest
+	acro_wheelie_move_southeast
+	acro_wheelie_move_northwest
+	acro_wheelie_move_northeast
+	step_end
+
 Common_EventScript_PkmnCenterNurse::
 	lock
 	faceplayer
@@ -41,6 +48,7 @@ EventScript_PkmnCenterNurse_IllTakeYourPkmn2::
 	return
 
 EventScript_PkmnCenterNurse_TakeAndHealPkmn::
+	// applymovement OBJ_EVENT_ID_PLAYER, DiagonalTest
 	applymovement OBJ_EVENT_ID_FOLLOWER, FollowerDiagonalTest
 	waitmovement 0
 	hidefollower 0
