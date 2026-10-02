@@ -380,7 +380,7 @@ bool8 MetatileBehavior_IsSouthwestArrowWarp(u8 metatileBehavior)
     return (MetatileBehavior_IsSouthArrowWarp(metatileBehavior) && MetatileBehavior_IsWestArrowWarp(metatileBehavior));
 }
 
-bool8 Unref_MetatileBehavior_IsArrowWarp(u8 metatileBehavior)
+bool8 UNUSED Unref_MetatileBehavior_IsArrowWarp(u8 metatileBehavior)
 {
     u8 isArrowWarp = FALSE;
 
