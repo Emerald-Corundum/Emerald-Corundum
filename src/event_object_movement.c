@@ -2078,6 +2078,9 @@ const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u32 species, bool32 
 // Find, or load, the palette for the specified pokemon info
 static u32 LoadDynamicFollowerPalette(u32 species, bool32 shiny, bool32 female)
 {
+    if (species == OW_CHANGE_TO_SUBSTITUTE)
+        species = SPECIES_NONE;
+
     u32 paletteNum;
     // Use standalone palette, unless entry is OOB or NULL (fallback to front-sprite-based)
 #if OW_POKEMON_OBJECT_EVENTS == TRUE && OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE

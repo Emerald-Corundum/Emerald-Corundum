@@ -17,6 +17,11 @@ const u8 gMonIcon_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mark/ico
 #endif //P_GBA_STYLE_SPECIES_FOOTPRINTS
 #endif //P_FOOTPRINTS
 const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_mark/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+// load same palette for normal and shiny variant, for now testing to see if palettes work, should not be able to have substitute follower outside of testing build anyways
+    const u16 gOverworldPalette_Substitute[] = INCBIN_U16("graphics/pokemon/question_mark/overworld.gbapal");
+    const u16 gShinyOverworldPalette_Substitute[] = INCBIN_U16("graphics/pokemon/question_mark/overworld.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 
 #if P_FAMILY_BULBASAUR
 #if !P_GBA_STYLE_SPECIES_GFX
@@ -9572,8 +9577,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if OW_TREECKO_DIAGONAL_MOVEMENT == TRUE
     const u32 gObjectEventPic_Treecko_Diagonal[] = INCBIN_COMP("graphics/pokemon/treecko/overworld_diagonal.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    const u32 gOverworldPalette_Treecko_Diagonal[] = INCBIN_U32("graphics/pokemon/treecko/overworld_diagonal_normal.gbapal.lz");
-    const u32 gShinyOverworldPalette_Treecko_Diagonal[] = INCBIN_U32("graphics/pokemon/treecko/overworld_diagonal_shiny.gbapal.lz");
+    const u16 gOverworldPalette_Treecko_Diagonal[] = INCBIN_U16("graphics/pokemon/treecko/overworld_diagonal_normal.gbapal");
+    const u16 gShinyOverworldPalette_Treecko_Diagonal[] = INCBIN_U16("graphics/pokemon/treecko/overworld_diagonal_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #else
     const u32 gObjectEventPic_Treecko[] = INCBIN_COMP("graphics/pokemon/treecko/overworld.4bpp");

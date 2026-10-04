@@ -129,7 +129,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     #if OW_POKEMON_OBJECT_EVENTS
         .overworldData = {
             .tileTag = TAG_NONE,
-            .paletteTag = OBJ_EVENT_PAL_TAG_SUBSTITUTE,
+            .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,
             .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
             .size = 512,
             .width = 32,
@@ -145,6 +145,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
             .images = sPicTable_Substitute,
             .affineAnims = gDummySpriteAffineAnimTable,
         },
+        .overworldPalette = gOverworldPalette_Substitute,
+        .overworldShinyPalette = gShinyOverworldPalette_Substitute,
     #endif
         .levelUpLearnset = sNoneLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
